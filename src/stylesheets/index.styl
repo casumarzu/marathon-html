@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic")
+@import 'common/headers'
+body, html
+  size 100%
+  position relative
+  padding 0
+  margin 0
+  font-family 'Open Sans', sans-serif
+  font-size: 10px
+
+body
+  background #ecec5f
+
+button
+  font-size 1em
+  border none
+  display inline-block
+  padding 1em
+  background green
+  color #fff
+  cursor pointer
+  transition all .5s ease
+  outline none
+  margin 1em 0
+  border-radius 10px
+  &:hover
+    background blue
+  &:active
+    background red
+
+input[type="text"], textarea
+  border none
+  display block
+  size 100% 4em
+  padding 0 10px
+textarea
+  size 100% 10em
+
+.Wrapper
+  padding 20px
+  opacity 0
+  transition all .3s ease
+  &.__active
+    opacity 1
+  label
+    text-align left
+    padding 0
+    span
+      padding 10px 0
+      display block
+      text-shadow 1px 1px 2px #000
