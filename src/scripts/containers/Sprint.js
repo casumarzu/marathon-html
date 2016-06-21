@@ -9,7 +9,9 @@ import styles from 'Styles/Sprint.styl'
 import indexStyle from 'Styles/index.styl'
 
 class App extends Component {
-  static propTypes = {}
+  static propTypes = {
+    sprintList: PropTypes.object.isRequired,
+  }
   constructor(props) {
     super(props);
     this.state = { show: false }

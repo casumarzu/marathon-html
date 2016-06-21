@@ -15,7 +15,7 @@ if(NODE_ENV === 'development'){
       title: 'D.App',
       favicon: path.join(__dirname, '..', '/src', 'favicon.ico'),
       template: path.join(__dirname, '..', '/src', '/templates/index.html'),
-      chunks: ['common', 'alpha', 'vendors']
+      chunks: ['common', 'vendors']
     }),
     // new NpmInstallPlugin(),
     new ExtractTextPlugin(),
@@ -34,7 +34,7 @@ if(NODE_ENV === 'development'){
       title: 'P.App',
       favicon: path.join(__dirname, '..', '/src', 'favicon.ico'),
       template: path.join(__dirname, '..', '/src', '/templates/index.html'),
-      chunks: ['common', 'beta', 'vendors'],
+      chunks: ['common', 'vendors'],
     }),
     new CommonsChunkPlugin('vendors', 'vendors.[hash].js'),
     new ExtractTextPlugin('bundle.[hash].css', { allChunks: true }),

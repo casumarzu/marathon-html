@@ -18,7 +18,6 @@ export default class SprintList extends Component {
     }
   }
   handleSubmit(event) {
-    alert('sadfljkjasdlfk')
     event.preventDefault()
     if(!this.state.value) return;
     const { list } = this.props

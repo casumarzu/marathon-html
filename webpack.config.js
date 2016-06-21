@@ -20,7 +20,7 @@ var config = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    publicPath: '',
+    publicPath: '/',
     filename: '[name].bundle.[hash].js'
   },
   resolve: {

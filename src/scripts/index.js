@@ -15,10 +15,10 @@ render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
-        <Route path="/" component={ About }/>
-        <Route path="/about" component={ About }/>
-        <Route path="sprints" component={ Sprints }></Route>
-        <Route path="/sprint/:id" component={ Sprint }/>
+        <Route path="/" component={ About } />
+        <Route path="about" component={ About } />
+        <Route path="sprints" component={ Sprints } />
+        <Route path="sprint/:id" component={ Sprint } />
       </Route>
     </Router>
   </Provider>
