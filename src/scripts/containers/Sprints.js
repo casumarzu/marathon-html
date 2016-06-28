@@ -37,7 +37,7 @@ class Sprints extends Component {
       <div className={`${styles.Wrapper} ${show}`}>
         <h1>Забеги</h1>
         <SprintList list={ sprintList.list } addItem={ addItem } checkItem={ checkItem } />
-        {this.props.children}
+        { this.props.children }
       </div>
     )
   }

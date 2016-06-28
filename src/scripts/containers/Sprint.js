@@ -8,9 +8,24 @@ import * as sprintListActions from '../actions/SprintList.Actions'
 import styles from 'Styles/Sprint.styl'
 import indexStyle from 'Styles/index.styl'
 
-class App extends Component {
+import Registration from 'Components/Registration'
+
+import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+
+import CircularProgress from 'material-ui/CircularProgress'
+
+
+class Sprint extends Component {
   static propTypes = {
     sprintList: PropTypes.object.isRequired,
+  }
+  static childContextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  }
+
+  getChildContext() {
+    return { muiTheme: getMuiTheme(baseTheme) }
   }
   constructor(props) {
     super(props);
@@ -22,23 +37,8 @@ class App extends Component {
     }
     setTimeout(()=> {
       show()
-    }, 100)
+    }, 1500)
 
-  }
-
-  handleRegistration(event) {
-    event.preventDefault()
-    if(!this.state.value) return;
-    // const { list } = this.props
-    // list.push({
-    //   id: _.uniqueId(),
-    //   name: this.state.value,
-    //   checked: false
-    // })
-    //
-    // this.setState({ value: '' })
-    //
-    // this.props.addItem(list)
   }
 
   render() {
@@ -48,25 +48,33 @@ class App extends Component {
     const id = this.props.params.id
     const sprint = _.find(sprintList.list, { id: +id })
     const {title, info, schedule, organization, infrastructure, price, type} = sprint
+
+    let BottomBlock = ''
+    if(type === 'present') {
+      BottomBlock = <Registration />
+    }
+    let progressShow = ''
+    if(this.state.show) {
+      progressShow = indexStyle.__hide
+    }
     return (
-      <div className={`${indexStyle.Wrapper} ${show}`}>
-        <h2>Спринт одиночный</h2>
-        <h3>Забег: {title}</h3>
-        <h4>Информация о забеге</h4>
-        <p>{ info }</p>
-        <h4>Расписание</h4>
-        <p>{ schedule }</p>
-        <h4>Организация</h4>
-        <p>{ organization }</p>
-        <h4>Инфраструктура</h4>
-        <p>{ infrastructure }</p>
-        <h4>Цена</h4>
-        <p>{ price }</p>
-        <form className={ styles['sprint-list'] } onSubmit={::this.handleRegistration}>
-          <label>
-            <span>Регистрация</span>
-          </label>
-        </form>
+      <div>
+        <CircularProgress size={2} className={progressShow} />
+        <div className={`${indexStyle.Wrapper} ${show}`}>
+          <h2>Спринт одиночный</h2>
+          <h3>Забег: {title}</h3>
+          <h4>Информация о забеге</h4>
+          <p>{ info }</p>
+          <h4>Расписание</h4>
+          <p>{ schedule }</p>
+          <h4>Организация</h4>
+          <p>{ organization }</p>
+          <h4>Инфраструктура</h4>
+          <p>{ infrastructure }</p>
+          <h4>Цена</h4>
+          <p>{ price }</p>
+          { BottomBlock }
+        </div>
       </div>
     )
   }
@@ -84,4 +92,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(Sprint)

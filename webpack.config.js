@@ -40,6 +40,7 @@ var config = {
 
       Util: path.resolve( __dirname, 'src', 'scripts', 'utils' ),
       Exp: path.resolve( __dirname, 'src', 'scripts', 'exp' ),
+      Apis: path.resolve( __dirname, 'src', 'scripts', 'apis' ),
 
       Images: path.resolve( __dirname, 'src', 'images' ),
       Styles: path.resolve( __dirname, 'src', 'stylesheets' ),
