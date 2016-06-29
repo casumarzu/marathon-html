@@ -8,7 +8,7 @@ export default class SprintList extends Component {
   static propTypes = {
     list: PropTypes.array.isRequired,
     addItem: PropTypes.func.isRequired,
-    checkItem: PropTypes.func.isRequired,
+    changeItem: PropTypes.func.isRequired
   }
 
   constructor(props) {
@@ -17,35 +17,18 @@ export default class SprintList extends Component {
       value: ''
     }
   }
-  handleSubmit(event) {
-    event.preventDefault()
-    if(!this.state.value) return;
-    const { list } = this.props
-    list.push({
-      id: _.uniqueId(),
-      name: this.state.value,
-      checked: false
-    })
 
-    this.setState({ value: '' })
-
-    this.props.addItem(list)
-  }
-  handleChangeInput(event) {
-    this.setState({ value: event.target.value })
-  }
   render() {
-    const { list, checkItem, type } = this.props
+    const { list, type } = this.props
     const { value } = this.state
     const listLng = list.length
     const sprintListView = list.map((sprint) => {
-      let {id, title, info, schedule, organization, infrastructure, price, type} = sprint
+      const { id, title, info, schedule, organization, infrastructure, price, type } = sprint
       return (
         <SprintItem
           key={ id }
           id={ id }
           title={ title }
-          checkItem={ checkItem }
           info={ info }
           schedule={ schedule }
           organization={ organization }

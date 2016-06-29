@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
-import sprintList from './SprintList.Reducer'
+import sprints from './Sprints.Reducer'
+import participants from './Participants.Reducer'
 
 export default combineReducers({
-  sprintList
+  sprints,
+  participants
 })

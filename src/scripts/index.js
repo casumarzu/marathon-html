@@ -7,8 +7,8 @@ import configureStore from './store/configureStore'
 const store = configureStore()
 import Routes from './router'
 
-import GoogleFirebaseAPI from 'Apis/Google.Firebase'
-const firebase = new GoogleFirebaseAPI
+// import GoogleFirebaseAPI from 'Apis/Google.Firebase'
+// const fbAPI = window.fbAPI = new GoogleFirebaseAPI
 
 render(
   <Provider store={ store }><Routes/></Provider>

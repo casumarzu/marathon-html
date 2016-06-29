@@ -88,6 +88,7 @@
     "precss": "^1.4.0",
     "pug": "^2.0.0-alpha6",
     "react-toolbox": "^1.0.1",
+    "reactfire": "^1.0.0",
     "rucksack-css": "^0.8.6",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",

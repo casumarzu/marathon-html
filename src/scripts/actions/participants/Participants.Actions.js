@@ -1,4 +1,4 @@
-import { ADD_ITEM, CHECK_ITEM, REMOVE_ITEM } from '../constants/SprintList.Constants'
+import { ADD_ITEM, CHANGE_ITEM, REMOVE_ITEM } from 'Constants/Marathons.Constants'
 import _ from 'lodash'
 
 export function addItem(list) {
@@ -10,11 +10,11 @@ export function addItem(list) {
   }
 }
 
-export function checkItem(list, id) {
+export function changeItem(list, id) {
   return (dispatch) => {
     dispatch({
-      type: CHECK_ITEM,
-      payload: checkItemById(list, id)
+      type: CHANGE_ITEM,
+      payload: changeItemById(list, id)
     })
   }
 }
@@ -28,22 +28,15 @@ export function removeItem(list, id) {
   }
 }
 
-function checkItemById (list, id) {
-  const index = _.findIndex(list, (item) => {
-    return item.id === id
-  })
+function changeItemById (list, id) {
+  const index = _.findIndex(list, (item) => item.id === id)
   const item = list[index]
-  item.checked = !item.checked
-
   return list
 }
 
 function arrayWithoutItemById (list, id) {
-  const index = _.findIndex(list, (item) => {
-    return item.id === id
-  })
+  const index = _.findIndex(list, (item) => item.id === id)
   const result = list
   delete result[index]
-
   return _.compact(result)
 }

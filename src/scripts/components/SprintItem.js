@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import _ from 'lodash'
-import * as sprintListActions from '../actions/SprintList.Actions'
 
 import styles from 'Styles/Sprint.styl'
 
@@ -23,7 +22,7 @@ export default class SprintItem extends Component {
       supText = 'Будущий'
     }
     return (
-      <div className={ styles['sprint-list__item'] +' '+ styles[sprintType] }>
+      <div className={`${styles['sprint-list__item']} ${styles[sprintType]}`}>
         <Link to={`/sprint/${id}`}>
           <h3>Забег: {title}</h3>
           <sup>{ supText }</sup>

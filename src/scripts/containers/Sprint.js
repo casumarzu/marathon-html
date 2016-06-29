@@ -3,32 +3,24 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 
-import SprintList from '../components/SprintList'
-import * as sprintListActions from '../actions/SprintList.Actions'
+import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import CircularProgress from 'material-ui/CircularProgress'
+
+import SprintList from 'Components/SprintList'
+import * as sprintListActions from 'Actions/sprints/Sprints.Actions'
+import Registration from 'Components/Registration'
 import styles from 'Styles/Sprint.styl'
 import indexStyle from 'Styles/index.styl'
 
-import Registration from 'Components/Registration'
-
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-
-import CircularProgress from 'material-ui/CircularProgress'
 
 
 class Sprint extends Component {
-  static propTypes = {
-    sprintList: PropTypes.object.isRequired,
-  }
-  static childContextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
-  }
-
   getChildContext() {
     return { muiTheme: getMuiTheme(baseTheme) }
   }
   constructor(props) {
-    super(props);
+    super(props)
     this.state = { show: false }
   }
   componentDidMount() {
@@ -44,10 +36,10 @@ class Sprint extends Component {
   render() {
     let show = indexStyle.__active
     if(!this.state.show) show = ''
-    const { sprintList } = this.props
+    const { sprints } = this.props
     const id = this.props.params.id
-    const sprint = _.find(sprintList.list, { id: +id })
-    const {title, info, schedule, organization, infrastructure, price, type} = sprint
+    const sprint = _.find(sprints.list, { id: +id })
+    const { title, info, schedule, organization, infrastructure, price, type } = sprint
 
     let BottomBlock = ''
     if(type === 'present') {
@@ -80,9 +72,17 @@ class Sprint extends Component {
   }
 }
 
+Sprint.childContextTypes = {
+  muiTheme: PropTypes.object.isRequired,
+}
+
+Sprint.propTypes = {
+  sprints: PropTypes.object.isRequired,
+}
+
 function mapStateToProps(state) {
   return {
-    sprintList: state.sprintList,
+    sprints: state.sprints,
   }
 }
 

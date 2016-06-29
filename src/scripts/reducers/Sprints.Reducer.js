@@ -1,6 +1,6 @@
-import { ADD_ITEM, CHECK_ITEM } from '../constants/SprintList.Constants'
+import { ADD_ITEM, CHANGE_ITEM, REMOVE_ITEM } from 'Constants/Sprints.Constants'
 
-const initialState = {
+let initialState = {
   list: [
     {
       id: 1,
@@ -35,11 +35,11 @@ const initialState = {
   ]
 }
 
-export default function addItem(state = initialState, action) {
+export default function sprintsList(state = initialState, action) {
   switch (action.type) {
     case ADD_ITEM:
       return { ...state, list: action.payload }
-    case CHECK_ITEM:
+    case CHANGE_ITEM:
       return { ...state, list: action.payload }
     default:
       return state;

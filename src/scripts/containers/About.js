@@ -1,8 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import SprintList from '../components/SprintList'
-import * as sprintListActions from '../actions/SprintList.Actions'
 import _ from 'lodash'
 import styles from 'Styles/index'
 

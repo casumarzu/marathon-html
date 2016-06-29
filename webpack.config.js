@@ -43,6 +43,7 @@ var config = {
       Apis: path.resolve( __dirname, 'src', 'scripts', 'apis' ),
 
       Images: path.resolve( __dirname, 'src', 'images' ),
+      Scripts: path.resolve( __dirname, 'src', 'scripts' ),
       Styles: path.resolve( __dirname, 'src', 'stylesheets' ),
       Tmpl: path.resolve( __dirname, 'src', 'templates' )
     }
