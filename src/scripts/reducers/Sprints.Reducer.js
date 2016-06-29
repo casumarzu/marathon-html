@@ -1,46 +1,55 @@
-import { ADD_ITEM, CHANGE_ITEM, REMOVE_ITEM } from 'Constants/Sprints.Constants'
+import _ from 'lodash'
+import {
+  ADD_ITEM,
+  CHANGE_ITEM,
+  REMOVE_ITEM,
+  CREATE_SPRINT_SUCCESS,
+  UPDATE_SPRINT_SUCCESS,
+  DELETE_SPRINT_SUCCESS,
+} from 'Constants/Sprints.Constants'
 
-let initialState = {
-  list: [
-    {
-      id: 1,
-      title: 'Забег 1',
-      info: 'забег бег',
-      schedule: 'Воскресенье 10:00-13:00',
-      organization: 'Собираемся и бежим',
-      infrastructure: 'Это тут, это там',
-      price: 20000,
-      type: 'past'
-    },
-    {
-      id: 2,
-      title: 'Забег 2',
-      info: 'забег бег',
-      schedule: 'Воскресенье 10:00-13:00',
-      organization: 'Собираемся и бежим',
-      infrastructure: 'Это тут, это там',
-      price: 100,
-      type: 'present'
-    },
-    {
-      id: 3,
-      title: 'Забег 3',
-      info: 'забег бег',
-      schedule: 'Воскресенье 10:00-13:00',
-      organization: 'Собираемся и бежим',
-      infrastructure: 'Это тут, это там',
-      price: 3000,
-      type: 'future'
-    }
-  ]
+const initialState = {
+  deleted: null,
+  list: [],
+  previous: []
 }
 
-export default function sprintsList(state = initialState, action) {
+export default function sprintsReducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_ITEM:
-      return { ...state, list: action.payload }
-    case CHANGE_ITEM:
-      return { ...state, list: action.payload }
+    case CREATE_SPRINT_SUCCESS:
+      // const preList = _.uniqBy(state.list, (e)=> {return e.key})
+      return {
+        deleted: null,
+        list: (state.deleted && state.deleted.key === action.payload.key) ?
+              [ ...state.previous ] :
+              [ action.payload, ...state.list],
+        previous: []
+      }
+
+    case UPDATE_SPRINT_SUCCESS:
+      return {
+        deleted: null,
+        list: state.list.map(sprint => {
+          return sprint.key === action.payload.key ? action.payload : task;
+        }),
+        previous: []
+      }
+
+    case DELETE_SPRINT_SUCCESS:
+      return {
+        deleted: action.payload,
+        list: state.list.filter(task => {
+          return task.key !== action.payload.key;
+        }),
+        previous: [ ...state.list ]
+      }
+
+    // case ADD_ITEM:
+    //   return { ...state, list: action.payload }
+    //
+    // case CHANGE_ITEM:
+    //   return { ...state, list: action.payload }
+
     default:
       return state;
   }

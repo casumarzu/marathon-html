@@ -43,7 +43,6 @@ export default class SprintItem extends Component {
   handleRegistration(e) {
     e.preventDefault()
     this.handleOpen()
-    console.log(this.state)
   }
   handelChangeName(e) {
     this.setState({name: e.taraget.value})

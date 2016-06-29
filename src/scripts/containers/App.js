@@ -13,11 +13,10 @@ export default class App extends Component {
               <Link to={"/about"}>About</Link>
             </li>
             <li>
-              <Link to={"/sprints"}>Sprints</Link>
+              <Link to={"/"}>Sprints</Link>
             </li>
           </ul>
         </nav>
-
         {this.props.children}
       </div>
     )

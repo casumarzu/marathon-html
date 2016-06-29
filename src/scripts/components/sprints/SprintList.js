@@ -13,21 +13,17 @@ export default class SprintList extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      value: ''
-    }
   }
 
   render() {
     const { list, type } = this.props
-    const { value } = this.state
-    const listLng = list.length
+
     const sprintListView = list.map((sprint) => {
-      const { id, title, info, schedule, organization, infrastructure, price, type } = sprint
+      const { key, title, info, schedule, organization, infrastructure, price, type } = sprint
       return (
         <SprintItem
-          key={ id }
-          id={ id }
+          id={ key }
+          key={ key }
           title={ title }
           info={ info }
           schedule={ schedule }
