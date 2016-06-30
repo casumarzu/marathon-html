@@ -3,22 +3,45 @@ import { Router, Route, Link, browserHistory } from 'react-router'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()
 
+import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+
+import { AppBar, Tabs, Tab, Card, CardActions, CardHeader, CardText, FlatButton } from 'material-ui'
+
+const styles = {
+  headline: {
+    fontSize: 24,
+    paddingTop: 16,
+    marginBottom: 12,
+    fontWeight: 400,
+  },
+}
+
+function handleActive(tab) {
+  browserHistory.push(tab.props.route)
+}
+
 export default class App extends Component {
+  getChildContext() {
+    return { muiTheme: getMuiTheme(baseTheme) }
+  }
   render() {
     return (
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to={"/about"}>About</Link>
-            </li>
-            <li>
-              <Link to={"/"}>Sprints</Link>
-            </li>
-          </ul>
-        </nav>
+        <AppBar
+          title="Марафон"
+          iconClassNameRight="muidocs-icon-navigation-expand-more"
+        />
+        <Tabs>
+          <Tab label="About" route="/about" onActive={handleActive}></Tab>
+          <Tab label="Sprints" route="/" onActive={handleActive}></Tab>
+        </Tabs>
         {this.props.children}
       </div>
     )
   }
+}
+
+App.childContextTypes = {
+  muiTheme: PropTypes.object.isRequired,
 }

@@ -1,37 +1,27 @@
-import { ADD_ITEM, CHANGE_ITEM, REMOVE_ITEM } from 'Constants/Participants.Constants'
+import {
+  SHOW_PARTICIPANT_SUCCESS,
+  SHOW_PARTICIPANT_ERROR,
+  SHOW_PARTICIPANTS_SUCCESS,
+  SHOW_PARTICIPANTS_ERROR,
+  CREATE_PARTICIPANT_SUCCESS,
+  CREATE_PARTICIPANT_ERROR,
+  UPDATE_PARTICIPANT_SUCCESS,
+  UPDATE_PARTICIPANT_ERROR,
+  DELETE_PARTICIPANT_SUCCESS,
+  DELETE_PARTICIPANT_ERROR
+} from 'Constants/Participants.Constants'
 
 let initialState = {
-  list: [
-    {
-      id: 1,
-      name: 'Иван Иванов',
-      age: 26,
-      gender: 'male',
-      club: 'Тверь Клуб',
-      country: 'Россия, Тверь',
-      phone: '+7-920-123-45-67',
-      allowed: true,
-      paid: true
-    },
-    {
-      id: 2,
-      name: 'Петр Петров',
-      age: 27,
-      gender: 'male',
-      club: 'Тверь Клуб',
-      country: 'Россия, Тверь',
-      phone: '+7-920-123-45-67',
-      allowed: false,
-      paid: false
-    }
-  ]
+  deleted: null,
+  list: [],
+  previous: []
 }
 
 export default function participantsList(state = initialState, action) {
   switch (action.type) {
-    case ADD_ITEM:
+    case SHOW_PARTICIPANTS_SUCCESS:
       return { ...state, list: action.payload }
-    case CHANGE_ITEM:
+    case CREATE_PARTICIPANT_SUCCESS:
       return { ...state, list: action.payload }
     default:
       return state;

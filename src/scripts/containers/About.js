@@ -7,23 +7,14 @@ export default class About extends Component {
 
   }
   constructor(props) {
-    super(props);
-    this.state = { show: false }
+    super(props)
   }
   componentDidMount() {
-    const show = ()=> {
-      this.setState({ show: true })
-    }
-    setTimeout(()=> {
-      show()
-    }, 100)
 
   }
   render() {
-    let show = styles.__active
-    if(!this.state.show) show = ''
     return (
-      <div className={`${styles.Wrapper} ${show}`}>
+      <div className={styles.Wrapper}>
         <h1>About Page</h1>
         <p>
           Марафо́н (греч. Μαραθών, Marathṓn) — дисциплина лёгкой атлетики, представляющая собой забег на дистанцию 42 километра 195 метров (26 миль 385 ярдов). Ведущие мировые марафоны проводятся под эгидой и по правилам, разработанным Ассоциацией международных марафонов и пробегов (AIMS). Правила AIMS подтверждены Международной ассоциацией легкоатлетических федераций (IAAF).

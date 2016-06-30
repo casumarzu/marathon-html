@@ -1,0 +1,72 @@
+{
+  "marathons": {
+    "1": {
+      "id": 1,
+      "title": "Первый забег",
+      "info": "забег бег",
+      "schedule": "Понедельник 10:00-13:00",
+      "organization": "Приходим и бежим",
+      "infrastructure": "Это тут, это там",
+      "price": 100,
+      "type": "past"
+    },
+    "2": {
+      "id": 2,
+      "title": "Второй забег",
+      "info": "забег бег",
+      "schedule": "Вторник 10:00-13:00",
+      "organization": "Приходим и бежим",
+      "infrastructure": "Это тут, это там",
+      "price": 200,
+      "type": "present"
+    },
+    "3": {
+      "id": 3,
+      "title": "Третий забег",
+      "info": "забег бег",
+      "schedule": "Среда 10:00-13:00",
+      "organization": "Приходим и бежим",
+      "infrastructure": "Это тут, это там",
+      "price": 300,
+      "type": "future"
+    }
+  },
+  "participants": {
+    "1": {
+      "id": 1,
+      "marathon": 2,
+      "name": "Иван Иванов",
+      "gender": "male",
+      "age": 25,
+      "country": "Россия, Тверь",
+      "club": "Волга Тверь",
+      "phone": "+7-920-123-45-67",
+      "allowed": true,
+      "paid": true
+    },
+    "2": {
+      "id": 2,
+      "marathon": 2,
+      "name": "Петр Петров",
+      "gender": "male",
+      "age": 27,
+      "country": "Россия, Тверь",
+      "club": "Волга Тверь",
+      "phone": "+7-920-123-45-67",
+      "allowed": false,
+      "paid": false
+    },
+    "3": {
+      "id": 3,
+      "marathon": 2,
+      "name": "Мария Петрова",
+      "gender": "female",
+      "age": 22,
+      "country": "Россия, Тверь",
+      "club": "Волга Тверь",
+      "phone": "+7-920-123-45-67",
+      "allowed": true,
+      "paid": true
+    }
+  }
+}

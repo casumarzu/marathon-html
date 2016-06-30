@@ -19,7 +19,16 @@ export default class SprintItem extends Component {
     super(props);
     this.state = {
       open: false,
-      name: ''
+      id: 1,
+      marathon: 2,
+      name: 'Иван Иванов',
+      gender: 'male',
+      age: 23,
+      country: 'Россия, Тверь',
+      club: 'Волга Тверь',
+      phone: '+7-920-123-45-67',
+      allowed: true,
+      paid: true
     }
   }
 
@@ -47,6 +56,13 @@ export default class SprintItem extends Component {
   handelChangeName(e) {
     this.setState({name: e.taraget.value})
   }
+
+  handleChange(e) {
+    // this.setState({
+    //
+    // })
+  }
+
   render() {
 
     const actions = [
@@ -62,12 +78,12 @@ export default class SprintItem extends Component {
       <div className={ styles.Registration }>
         <h3>Регистрация участника:</h3>
         <form onSubmit={::this.handleRegistration}>
-          <FormItem title="Имя" type="text" />
-          <FormItem title="Возраст" type="age" />
-          <FormItem title="Пол" type="text" />
-          <FormItem title="Клуб" type="text" />
-          <FormItem title="Страна, город" type="text" />
-          <FormItem title="Телефон" type="phone" />
+          <FormItem title="Имя" type="text" name="name" value={ this.state.name } handleChange={::this.handleChange} />
+          <FormItem title="Возраст" type="age" name="age" value={ this.state.age } />
+          <FormItem title="Пол" type="text" name="gender" value={ this.state.gender } />
+          <FormItem title="Клуб" type="text" name="club" value={ this.state.club } />
+          <FormItem title="Страна, город" type="text" name="country" value={ this.state.country } />
+          <FormItem title="Телефон" type="phone" name="phone" value={ this.state.phone } />
           {/*<FormItem title="Допущен или нет" type="checkbox" />
           <FormItem title="Оплатил или нет" type="checkbox" />*/}
           {/*<Checkbox

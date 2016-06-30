@@ -3,16 +3,15 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 
+import CircularProgress from 'material-ui/CircularProgress'
+
 import SprintList from 'Components/sprints/SprintList'
-import * as sprintsActions from 'Actions/sprints/Sprints.Actions'
+import * as sprintsActions from 'Actions/Sprints.Actions'
 import styles from 'Styles/index'
-
-
 
 class Sprints extends Component {
   constructor(props) {
     super(props)
-    window.props = this.props
     this.state = { show: false }
   }
 
@@ -25,7 +24,14 @@ class Sprints extends Component {
   }
   render() {
     const { sprints } = this.props
-    const { addItem, changeItem } = this.props.sprintsActions
+    if(!sprints.length){
+      return(
+        <div>
+          <CircularProgress size={2} />
+        </div>
+      )
+    }
+    const { changeItem } = this.props.sprintsActions
     let show = styles.__active
     if(!this.state.show) show = ''
     return (
@@ -38,12 +44,9 @@ class Sprints extends Component {
   }
 }
 
-
-
 Sprints.propTypes = {
-  sprints: PropTypes.object.isRequired,
+  sprints: PropTypes.array.isRequired,
   sprintsActions: PropTypes.shape({
-    addItem: PropTypes.func.isRequired,
     changeItem: PropTypes.func.isRequired,
     registerListeners: PropTypes.func.isRequired,
   })
@@ -51,8 +54,7 @@ Sprints.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    sprints: state.sprints.list,
-    // sprintsActions: state.sprintsActions
+    sprints: state.sprints.list
   }
 }
 

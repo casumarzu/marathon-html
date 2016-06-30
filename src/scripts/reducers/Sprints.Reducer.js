@@ -1,8 +1,7 @@
 import _ from 'lodash'
 import {
-  ADD_ITEM,
-  CHANGE_ITEM,
-  REMOVE_ITEM,
+  SHOW_SPRINT_SUCCESS,
+  SHOW_SPRINTS_SUCCESS,
   CREATE_SPRINT_SUCCESS,
   UPDATE_SPRINT_SUCCESS,
   DELETE_SPRINT_SUCCESS,
@@ -16,15 +15,11 @@ const initialState = {
 
 export default function sprintsReducer(state = initialState, action) {
   switch (action.type) {
-    case CREATE_SPRINT_SUCCESS:
-      // const preList = _.uniqBy(state.list, (e)=> {return e.key})
-      return {
-        deleted: null,
-        list: (state.deleted && state.deleted.key === action.payload.key) ?
-              [ ...state.previous ] :
-              [ action.payload, ...state.list],
-        previous: []
-      }
+    case SHOW_SPRINT_SUCCESS:
+      return { ...state, item: action.payload }
+
+    case SHOW_SPRINTS_SUCCESS:
+      return { ...state, list: action.payload }
 
     case UPDATE_SPRINT_SUCCESS:
       return {
@@ -34,21 +29,6 @@ export default function sprintsReducer(state = initialState, action) {
         }),
         previous: []
       }
-
-    case DELETE_SPRINT_SUCCESS:
-      return {
-        deleted: action.payload,
-        list: state.list.filter(task => {
-          return task.key !== action.payload.key;
-        }),
-        previous: [ ...state.list ]
-      }
-
-    // case ADD_ITEM:
-    //   return { ...state, list: action.payload }
-    //
-    // case CHANGE_ITEM:
-    //   return { ...state, list: action.payload }
 
     default:
       return state;

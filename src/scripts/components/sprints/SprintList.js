@@ -6,9 +6,7 @@ import styles from 'Styles/Sprint.styl'
 
 export default class SprintList extends Component {
   static propTypes = {
-    list: PropTypes.array.isRequired,
-    addItem: PropTypes.func.isRequired,
-    changeItem: PropTypes.func.isRequired
+    list: PropTypes.array.isRequired
   }
 
   constructor(props) {
@@ -19,11 +17,11 @@ export default class SprintList extends Component {
     const { list, type } = this.props
 
     const sprintListView = list.map((sprint) => {
-      const { key, title, info, schedule, organization, infrastructure, price, type } = sprint
+      const { id, title, info, schedule, organization, infrastructure, price, type } = sprint
       return (
         <SprintItem
-          id={ key }
-          key={ key }
+          id={ id }
+          key={ id }
           title={ title }
           info={ info }
           schedule={ schedule }
