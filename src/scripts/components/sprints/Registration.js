@@ -36,6 +36,10 @@ export default class SprintItem extends Component {
     muiTheme: React.PropTypes.object.isRequired,
   }
 
+  componentDidMount() {
+
+  }
+
   getChildContext() {
     return { muiTheme: getMuiTheme(baseTheme) }
   }
@@ -54,13 +58,11 @@ export default class SprintItem extends Component {
     this.handleOpen()
   }
   handelChangeName(e) {
-    this.setState({name: e.taraget.value})
+
   }
 
   handleChange(e) {
-    // this.setState({
-    //
-    // })
+
   }
 
   render() {
@@ -73,17 +75,17 @@ export default class SprintItem extends Component {
         onTouchTap={::this.handleClose}
       />,
     ]
-
+    const { name, age, gender, club, country, phone } = this.state
     return (
       <div className={ styles.Registration }>
         <h3>Регистрация участника:</h3>
         <form onSubmit={::this.handleRegistration}>
-          <FormItem title="Имя" type="text" name="name" value={ this.state.name } handleChange={::this.handleChange} />
-          <FormItem title="Возраст" type="age" name="age" value={ this.state.age } />
-          <FormItem title="Пол" type="text" name="gender" value={ this.state.gender } />
-          <FormItem title="Клуб" type="text" name="club" value={ this.state.club } />
-          <FormItem title="Страна, город" type="text" name="country" value={ this.state.country } />
-          <FormItem title="Телефон" type="phone" name="phone" value={ this.state.phone } />
+          <FormItem title="Имя" type="text" name="name" value={ name } />
+          <FormItem title="Возраст" type="age" name="age" value={ age } />
+          <FormItem title="Пол" type="text" name="gender" value={ gender } />
+          <FormItem title="Клуб" type="text" name="club" value={ club } />
+          <FormItem title="Страна, город" type="text" name="country" value={ country } />
+          <FormItem title="Телефон" type="phone" name="phone" value={ phone } />
           {/*<FormItem title="Допущен или нет" type="checkbox" />
           <FormItem title="Оплатил или нет" type="checkbox" />*/}
           {/*<Checkbox

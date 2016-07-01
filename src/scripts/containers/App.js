@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Router, Route, Link, browserHistory } from 'react-router'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()
 
@@ -7,6 +9,7 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 import { AppBar, Tabs, Tab, Card, CardActions, CardHeader, CardText, FlatButton } from 'material-ui'
+
 
 const styles = {
   headline: {
@@ -25,6 +28,7 @@ export default class App extends Component {
   getChildContext() {
     return { muiTheme: getMuiTheme(baseTheme) }
   }
+
   render() {
     return (
       <div>

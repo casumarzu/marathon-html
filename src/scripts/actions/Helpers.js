@@ -1,5 +1,6 @@
+import _ from 'lodash'
 export function snapshotToList(snapshot) {
-  let list = snapshot.val()
+  let list = _.compact(snapshot.val())
   let resultList = []
   for(let participant in list){
     if ({}.hasOwnProperty.call(list, participant)) {

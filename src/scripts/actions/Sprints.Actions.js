@@ -17,9 +17,7 @@ export function showItem(id) {
     let sprintItem = _.find(sprintsList, { id: +id })
     dispatch({
       type: SHOW_SPRINT_SUCCESS,
-      payload: {
-        id, sprintsList, sprintItem
-      }
+      payload: sprintItem
     })
   }
 }

@@ -12,15 +12,10 @@ import styles from 'Styles/index'
 class Sprints extends Component {
   constructor(props) {
     super(props)
-    this.state = { show: false }
   }
 
   componentDidMount() {
     this.props.sprintsActions.registerListeners()
-    setTimeout(()=> {
-      this.setState({ show: true })
-    }, 100)
-
   }
   render() {
     const { sprints } = this.props
@@ -32,10 +27,8 @@ class Sprints extends Component {
       )
     }
     const { changeItem } = this.props.sprintsActions
-    let show = styles.__active
-    if(!this.state.show) show = ''
     return (
-      <div className={`${styles.Wrapper} ${show}`}>
+      <div className={styles.Wrapper}>
         <h1>Забеги</h1>
         <SprintList list={ sprints } />
         { this.props.children }

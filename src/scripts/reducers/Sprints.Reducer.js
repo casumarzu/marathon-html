@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   deleted: null,
+  item: {},
   list: [],
   previous: []
 }

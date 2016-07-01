@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import { Table, TableBody } from 'material-ui/table'
 import ParticipantItem from './ParticipantItem'
 import _ from 'lodash'
 import styles from 'Styles/Participant.styl'
@@ -29,11 +28,9 @@ export default class ParticipantList extends Component {
     return (
 
       <div className="ParticipantList">
-        <Table>
-          <TableBody>
-            { participantsNode }
-          </TableBody>
-        </Table>
+        <ul>
+          { participantsNode }
+        </ul>
       </div>
     )
   }

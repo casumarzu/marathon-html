@@ -37,44 +37,12 @@ export function addItem(participant) {
   }
 }
 
-export function changeItem(participant, changes) {
-  return (dispatch) => {
-    function onError(error) {
-      if (error) {
-        console.error('ERROR @ updateSprint :', error); // eslint-disable-line no-console
-        dispatch({
-          type: UPDATE_PARTICIPANT_ERROR,
-          payload: error
-        });
-      }
-    }
-
-    firebaseDb.ref(`participants/${participant.key}`)
-    .update(changes, onError);
-  }
-}
-
-export function removeItem(participant) {
-  return (dispatch) => {
-    function onError (error) {
-      if (error) {
-        console.error('ERROR @ deleteSprint :', error); // eslint-disable-line no-console
-        dispatch({
-          type: DELETE_PARTICIPANT_ERROR,
-          payload: error
-        });
-      }
-    }
-    firebaseDb.ref(`participants/${participant.key}`).remove(onError)
-  }
-}
-
 let participantsList = []
 
 export function registerListeners() {
   return (dispatch, getState) => {
     const ref = firebaseDb.ref('participants')
-    ref.on('value', snapshot => {
+    ref.on('value', (snapshot) => {
       participantsList = snapshotToList(snapshot)
       dispatch({
         type: SHOW_PARTICIPANTS_SUCCESS,
@@ -82,7 +50,7 @@ export function registerListeners() {
       })
     })
 
-    ref.on('child_added', snapshot => dispatch({
+    ref.on('child_added', (snapshot) => dispatch({
       type: CREATE_PARTICIPANT_SUCCESS,
       payload: recordFromSnapshot(snapshot)
     }))

@@ -18,14 +18,10 @@ import indexStyle from 'Styles/index.styl'
 class Sprint extends Component {
   constructor(props) {
     super(props)
-    this.state = { show: false }
-  }
-
-  showContent() {
-
   }
 
   componentDidMount() {
+    this.state = { show: false }
     this.props.sprintListActions.registerListeners()
     this.props.participantsActions.registerListeners()
   }
@@ -42,7 +38,10 @@ class Sprint extends Component {
       )
     }
 
-    const sprint = _.find(sprints, { id: +id })
+    props.sprintListActions.showItem(id)
+    const { sprint } = props
+
+    // const sprint = _.find(sprints, { id: +id })
     const { title, info, schedule, organization, infrastructure, price, type } = sprint
 
 
@@ -54,26 +53,32 @@ class Sprint extends Component {
     let ParticipantsNode = ''
     if(participants.length){
       ParticipantsNode = <ParticipantList list={participants} />
+    }else{
+      ParticipantsNode = <h3 style={{color: 'red'}}>Нет участников епта!</h3>
     }
 
     return (
-      <div>
-        <div className={indexStyle.Wrapper}>
-          <h2>Спринт одиночный</h2>
-          <h3>Забег: {title}</h3>
-          <h4>Информация о забеге</h4>
-          <p>{ info }</p>
-          <h4>Расписание</h4>
-          <p>{ schedule }</p>
-          <h4>Организация</h4>
-          <p>{ organization }</p>
-          <h4>Инфраструктура</h4>
-          <p>{ infrastructure }</p>
-          <h4>Цена</h4>
-          <p>{ price }</p>
-          { ParticipantsNode }
-          { RegistrationNode }
-        </div>
+      <div className={indexStyle.Wrapper}>
+        <h2>Спринт одиночный</h2>
+        <h3>Забег: {title}</h3>
+
+        <h4>Информация о забеге</h4>
+        <p>{ info }</p>
+
+        <h4>Расписание</h4>
+        <p>{ schedule }</p>
+
+        <h4>Организация</h4>
+        <p>{ organization }</p>
+
+        <h4>Инфраструктура</h4>
+        <p>{ infrastructure }</p>
+
+        <h4>Цена</h4>
+        <p>{ price }</p>
+
+        { ParticipantsNode }
+        { RegistrationNode }
       </div>
     )
   }
@@ -81,11 +86,12 @@ class Sprint extends Component {
 
 Sprint.propTypes = {
   sprints: PropTypes.array.isRequired,
+  participants: PropTypes.array.isRequired
 }
 
 function mapStateToProps(state) {
   return {
-    sprint: state.sprint,
+    sprint: state.sprints.item,
     sprints: state.sprints.list,
     participants: state.participants.list
   }
@@ -94,7 +100,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     participantsActions: bindActionCreators(participantsActions, dispatch),
-    sprintListActions: bindActionCreators(sprintListActions, dispatch),
+    sprintListActions: bindActionCreators(sprintListActions, dispatch)
   }
 }
 
