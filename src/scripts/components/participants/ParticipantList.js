@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import ParticipantItem from './ParticipantItem'
 import _ from 'lodash'
-import styles from 'Styles/Participant.styl'
+import s from 'Styles/Participant.styl'
 
 export default class ParticipantList extends Component {
   constructor(props) {
@@ -25,12 +25,16 @@ export default class ParticipantList extends Component {
       )
     })
 
+    let headerNode = ''
+    if(list.length) {
+      headerNode = <h3>Участники:</h3>
+    }
+
     return (
 
-      <div className="ParticipantList">
-        <ul>
-          { participantsNode }
-        </ul>
+      <div className={s['participant-list']}>
+        { headerNode }
+        { participantsNode }
       </div>
     )
   }

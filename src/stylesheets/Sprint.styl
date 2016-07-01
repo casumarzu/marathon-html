@@ -1,17 +1,26 @@
+.sprint-single
+  background #b73434
+  padding 2em
+  color #fff
 .sprint-list
   font-size 1em
   text-align left
   padding: 1em 0
-  max-width 600px
+  max-width 1200px
+  display flex
+  flex-flow row wrap
+  margin 30px auto
+
   &__item
     color = #812e2e
     color #fff
-    margin 1em 0
+    margin 1em
     transition all .5s ease-in
     cursor pointer
     border-radius 3px
     padding 1em
     display block
+    flex-grow: 1
     a
       color #fff
     p
@@ -31,7 +40,7 @@
     &.__past
       background color + 20%
     &.__present
-      background color - 50%
+      background #106d10
     &.__future
       background color - 20%
     &:hover

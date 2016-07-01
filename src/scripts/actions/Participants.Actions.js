@@ -50,9 +50,16 @@ export function registerListeners() {
       })
     })
 
-    ref.on('child_added', (snapshot) => dispatch({
-      type: CREATE_PARTICIPANT_SUCCESS,
-      payload: recordFromSnapshot(snapshot)
-    }))
+    ref.on('child_added', (snapshot) => {
+      dispatch({
+        type: CREATE_PARTICIPANT_SUCCESS,
+        payload: recordFromSnapshot(snapshot)
+      })
+    })
+
+    // ref.on('child_added', (snapshot) => dispatch({
+    //   type: CREATE_PARTICIPANT_SUCCESS,
+    //   payload: recordFromSnapshot(snapshot)
+    // }))
   };
 }

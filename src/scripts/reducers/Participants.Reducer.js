@@ -22,7 +22,8 @@ export default function participantsList(state = initialState, action) {
     case SHOW_PARTICIPANTS_SUCCESS:
       return { ...state, list: action.payload }
     case CREATE_PARTICIPANT_SUCCESS:
-      return { ...state, list: action.payload }
+      return { ...state, message: 'CREATE_PARTICIPANT_SUCCESS!!!'}
+      // return { ...state, list: action.payload }
     default:
       return state;
   }

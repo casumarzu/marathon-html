@@ -18,7 +18,7 @@ class Sprints extends Component {
     this.props.sprintsActions.registerListeners()
   }
   render() {
-    const { sprints } = this.props
+    const { sprints, participants } = this.props
     if(!sprints.length){
       return(
         <div>

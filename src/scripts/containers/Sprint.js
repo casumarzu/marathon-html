@@ -12,7 +12,7 @@ import * as participantsActions from 'Actions/Participants.Actions'
 
 import Registration from 'Components/sprints/Registration'
 
-import styles from 'Styles/Sprint.styl'
+import s from 'Styles/Sprint.styl'
 import indexStyle from 'Styles/index.styl'
 
 class Sprint extends Component {
@@ -40,6 +40,7 @@ class Sprint extends Component {
 
     props.sprintListActions.showItem(id)
     const { sprint } = props
+    const { addItem } = props.participantsActions
 
     // const sprint = _.find(sprints, { id: +id })
     const { title, info, schedule, organization, infrastructure, price, type } = sprint
@@ -47,38 +48,43 @@ class Sprint extends Component {
 
     let RegistrationNode = ''
     if(type === 'present') {
-      RegistrationNode = <Registration />
+      RegistrationNode = <Registration id={ id } addItem={ addItem } />
     }
 
     let ParticipantsNode = ''
     if(participants.length){
-      ParticipantsNode = <ParticipantList list={participants} />
-    }else{
-      ParticipantsNode = <h3 style={{color: 'red'}}>Нет участников епта!</h3>
+      let participantsFiltred = _.filter(participants, ['marathon', +id])
+      ParticipantsNode = <ParticipantList list={participantsFiltred} />
     }
 
     return (
-      <div className={indexStyle.Wrapper}>
-        <h2>Спринт одиночный</h2>
-        <h3>Забег: {title}</h3>
+      <div className={indexStyle.Wrapper} style={{
+          display: 'flex',
+          flexFlow: 'row wrap',
+          maxWidth: 1200,
+          width: '100%',
+          margin: '30px auto 30px'
+        }}>
+        <div className={s['sprint-single']} style={{flexGrow: 1}}>
+          <h3>Забег: {title}</h3>
 
-        <h4>Информация о забеге</h4>
-        <p>{ info }</p>
+          <h4>Информация о забеге</h4>
+          <p>{ info }</p>
 
-        <h4>Расписание</h4>
-        <p>{ schedule }</p>
+          <h4>Расписание</h4>
+          <p>{ schedule }</p>
 
-        <h4>Организация</h4>
-        <p>{ organization }</p>
+          <h4>Организация</h4>
+          <p>{ organization }</p>
 
-        <h4>Инфраструктура</h4>
-        <p>{ infrastructure }</p>
+          <h4>Инфраструктура</h4>
+          <p>{ infrastructure }</p>
 
-        <h4>Цена</h4>
-        <p>{ price }</p>
-
-        { ParticipantsNode }
-        { RegistrationNode }
+          <h4>Цена</h4>
+          <p>{ price }</p>
+        </div>
+        <div style={{flexGrow: 1}}>{ RegistrationNode }</div>
+        <div style={{flexGrow: 1}}>{ ParticipantsNode }</div>
       </div>
     )
   }

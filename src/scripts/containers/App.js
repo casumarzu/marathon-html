@@ -7,35 +7,35 @@ injectTapEventPlugin()
 
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
-
-import { AppBar, Tabs, Tab, Card, CardActions, CardHeader, CardText, FlatButton } from 'material-ui'
-
-
-const styles = {
-  headline: {
-    fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
-    fontWeight: 400,
-  },
-}
+import mui, { AppBar, Tabs, Tab, Card, CardActions, CardHeader, CardText, FlatButton } from 'material-ui'
 
 function handleActive(tab) {
   browserHistory.push(tab.props.route)
 }
 
 export default class App extends Component {
+  constructor(props) {
+    super(props)
+  }
   getChildContext() {
-    return { muiTheme: getMuiTheme(baseTheme) }
+    return {
+      muiTheme: getMuiTheme(baseTheme)
+    }
   }
 
   render() {
+
+    const Nav = <nav><a>Hello</a></nav>
     return (
       <div>
         <AppBar
           title="Марафон"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
         />
+      {/*<nav>
+        <Link to="/">index</Link>
+        <Link to="/about">about</Link>
+      </nav>*/}
         <Tabs>
           <Tab label="About" route="/about" onActive={handleActive}></Tab>
           <Tab label="Sprints" route="/" onActive={handleActive}></Tab>

@@ -19,14 +19,13 @@ export default class SprintItem extends Component {
     super(props);
     this.state = {
       open: false,
-      id: 1,
-      marathon: 2,
-      name: 'Иван Иванов',
+      marathon: +this.props.id,
+      name: '',
       gender: 'male',
-      age: 23,
-      country: 'Россия, Тверь',
-      club: 'Волга Тверь',
-      phone: '+7-920-123-45-67',
+      age: null,
+      country: '',
+      club: '',
+      phone: '',
       allowed: true,
       paid: true
     }
@@ -50,19 +49,29 @@ export default class SprintItem extends Component {
 
   handleClose() {
     this.setState({open: false})
+    this.clearFields()
+  }
+
+  clearFields() {
+    console.log('clear');
   }
 
 
   handleRegistration(e) {
     e.preventDefault()
     this.handleOpen()
+    console.info('FORM FILDS', this.state)
+    let stateCloned = _.clone(this.state)
+    delete stateCloned.open
+    this.props.addItem(stateCloned)
   }
-  handelChangeName(e) {
 
-  }
-
-  handleChange(e) {
-
+  handleChange(event) {
+    // const { name, age, gender, club, country, phone } = this.state
+    const obj = {}
+    const { name, value } = event
+    obj[name] = value
+    this.setState(obj)
   }
 
   render() {
@@ -75,17 +84,17 @@ export default class SprintItem extends Component {
         onTouchTap={::this.handleClose}
       />,
     ]
-    const { name, age, gender, club, country, phone } = this.state
+
     return (
       <div className={ styles.Registration }>
         <h3>Регистрация участника:</h3>
         <form onSubmit={::this.handleRegistration}>
-          <FormItem title="Имя" type="text" name="name" value={ name } />
-          <FormItem title="Возраст" type="age" name="age" value={ age } />
-          <FormItem title="Пол" type="text" name="gender" value={ gender } />
-          <FormItem title="Клуб" type="text" name="club" value={ club } />
-          <FormItem title="Страна, город" type="text" name="country" value={ country } />
-          <FormItem title="Телефон" type="phone" name="phone" value={ phone } />
+          <FormItem title="Имя" type="text" name="name" handleChange={::this.handleChange} />
+          <FormItem title="Возраст" type="age" name="age" handleChange={::this.handleChange} />
+          <FormItem title="Пол" type="text" name="gender" handleChange={::this.handleChange} />
+          <FormItem title="Клуб" type="text" name="club" handleChange={::this.handleChange} />
+          <FormItem title="Страна, город" type="text" name="country" handleChange={::this.handleChange} />
+          <FormItem title="Телефон" type="phone" name="phone" handleChange={::this.handleChange} />
           {/*<FormItem title="Допущен или нет" type="checkbox" />
           <FormItem title="Оплатил или нет" type="checkbox" />*/}
           {/*<Checkbox

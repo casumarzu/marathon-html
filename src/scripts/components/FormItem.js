@@ -7,11 +7,14 @@ export default class FormItem extends Component {
 
   handleChange(event) {
     const {value} = event.target
-    this.props.handleChange({
-      value,
-      name: this.props.name
-    })
+    const {name} = this.props
+    this.props.handleChange({ value, name })
   }
+
+  handleClear() {
+
+  }
+
   render() {
     const {type, title, name, value} = this.props
     return (

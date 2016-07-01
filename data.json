@@ -29,11 +29,20 @@
       "infrastructure": "Это тут, это там",
       "price": 300,
       "type": "future"
+    },
+    "4": {
+      "id": 4,
+      "title": "Четвертый забег",
+      "info": "забег бег",
+      "schedule": "Четверг 10:00-13:00",
+      "organization": "Приходим и бежим",
+      "infrastructure": "Это тут, это там",
+      "price": 400,
+      "type": "present"
     }
   },
   "participants": {
     "1": {
-      "id": 1,
       "marathon": 2,
       "name": "Иван Иванов",
       "gender": "male",
@@ -45,7 +54,6 @@
       "paid": true
     },
     "2": {
-      "id": 2,
       "marathon": 2,
       "name": "Петр Петров",
       "gender": "male",
@@ -57,8 +65,7 @@
       "paid": false
     },
     "3": {
-      "id": 3,
-      "marathon": 2,
+      "marathon": 1,
       "name": "Мария Петрова",
       "gender": "female",
       "age": 22,
