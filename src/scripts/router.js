@@ -4,12 +4,13 @@ import Sprints from './containers/Sprints'
 import Sprint from './containers/Sprint'
 import Distance from './containers/Distance'
 import React, { Component } from 'react'
-import { Router, IndexRoute, Route, browserHistory } from 'react-router'
+import { Router, IndexRoute, Route } from 'react-router'
 
 export default class Routes extends Component {
   render() {
+    const { history } = this.props
     return (
-      <Router history={ browserHistory }>
+      <Router history={ history }>
         <Route path="/" component={ App }>
           <IndexRoute component={ Sprints } />
           <Route path="about" component={ About } />
