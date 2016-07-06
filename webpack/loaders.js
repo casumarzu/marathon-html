@@ -59,7 +59,7 @@ var tsLoader      = jsLoader('ts-loader!ts-jsx-loader', /\.ts?$/);
 
 var jadeLoader = fileLoader('pug', /\.jade?$/);
 
-var css = '!css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:10]!postcss-loader';
+var css = '!css-loader?modules&sourceMap&importLoaders=1&localIdentName=[local]___[hash:base64:10]!postcss-loader';
 
 var cssLoader  = styleLoader(css, /\.css?$/);
 var stylLoader = styleLoader(css + '!stylus-loader', /\.styl?$/);

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Router, Route, Link, browserHistory } from 'react-router'
+import { Card, CardHeader, CardTitle, CardText, Divider, CircularProgress } from 'material-ui'
 import _ from 'lodash'
 
 import styles from 'Styles/Sprint.styl'
@@ -24,15 +25,19 @@ export default class SprintItem extends Component {
     return (
       <div className={`${styles['sprint-list__item']} ${styles[sprintType]}`}>
         <Link to={`/sprint/${id}`}>
-          <h3>Забег: {title}</h3>
-          <sup>{ supText }</sup>
+          <Card>
+            <CardHeader title={`Забег: ${title}`} subtitle={supText}/>
+            <Divider/>
+
+            <CardTitle title="Информация о забеге" />
+            <CardText>{info}</CardText>
+            <Divider/>
+
+            <CardTitle title="Расписание" />
+            <CardText>{schedule}</CardText>
+            <Divider/>
+          </Card>
         </Link>
-        <h4>Информация о забеге</h4>
-        <p>{ info }</p>
-        <h4>Расписание</h4>
-        <p>{ schedule }</p>
-        <h4>Цена</h4>
-        <p>{ price }</p>
       </div>
     )
   }

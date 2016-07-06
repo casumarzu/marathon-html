@@ -12,7 +12,7 @@ if(NODE_ENV === 'development'){
   plugins = [
     new HtmlPlugin({
       filename: 'index.html',
-      title: 'D.App',
+      title: 'Разработка Марафон',
       favicon: path.join(__dirname, '..', '/src', 'favicon.ico'),
       template: path.join(__dirname, '..', '/src', '/templates/index.html'),
       chunks: ['common', 'vendors']
@@ -31,7 +31,7 @@ if(NODE_ENV === 'development'){
   plugins = [
     new HtmlPlugin({
       filename: 'index.html',
-      title: 'P.App',
+      title: 'Марафон',
       favicon: path.join(__dirname, '..', '/src', 'favicon.ico'),
       template: path.join(__dirname, '..', '/src', '/templates/index.html'),
       chunks: ['common', 'vendors'],

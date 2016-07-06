@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import ParticipantItem from './ParticipantItem'
 import _ from 'lodash'
+
+import ParticipantItem from './ParticipantItem'
 import s from 'Styles/Participant.styl'
 
 export default class ParticipantList extends Component {
@@ -10,9 +11,8 @@ export default class ParticipantList extends Component {
 
   render() {
     const { list } = this.props
-
     const participantsNode = list.map((participant) => {
-      const { id, name, age, country, club, gender } = participant
+      const { id, name, age, country, club, gender, allowed, paid } = participant
       return (
         <ParticipantItem
           id={ id }
@@ -21,7 +21,10 @@ export default class ParticipantList extends Component {
           age={ age }
           country={ country }
           club={ club }
-          gender={ gender } />
+          gender={ gender }
+          allowed={ allowed }
+          paid={ paid }
+        />
       )
     })
 
@@ -34,6 +37,7 @@ export default class ParticipantList extends Component {
 
       <div className={s['participant-list']}>
         { headerNode }
+
         { participantsNode }
       </div>
     )

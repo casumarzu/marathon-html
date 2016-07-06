@@ -7,7 +7,9 @@ injectTapEventPlugin()
 
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import mui, { AppBar, Tabs, Tab, Card, CardActions, CardHeader, CardText, FlatButton } from 'material-ui'
+import mui, { AppBar, MenuItem, Drawer, Tabs, Tab, Card, CardActions, CardHeader, CardText, FlatButton } from 'material-ui'
+import { MuiThemeProvider } from 'material-ui/styles'
+import s from 'Styles/index'
 
 function handleActive(tab) {
   browserHistory.push(tab.props.route)
@@ -17,35 +19,46 @@ export default class App extends Component {
   constructor(props) {
     super(props)
   }
-  getChildContext() {
-    return {
-      muiTheme: getMuiTheme(baseTheme)
-    }
+
+  componentWillMount() {
+    this.state = {open: false}
+  }
+
+  handleToggle() {
+    this.setState({open: !this.state.open})
+  }
+
+  handleClose() {
+    this.setState({open: false})
   }
 
   render() {
-
-    const Nav = <nav><a>Hello</a></nav>
     return (
-      <div>
-        <AppBar
-          title="Марафон"
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
-        />
-      {/*<nav>
-        <Link to="/">index</Link>
-        <Link to="/about">about</Link>
-      </nav>*/}
-        <Tabs>
-          <Tab label="About" route="/about" onActive={handleActive}></Tab>
-          <Tab label="Sprints" route="/" onActive={handleActive}></Tab>
-        </Tabs>
-        {this.props.children}
-      </div>
+      <MuiThemeProvider>
+        <div>
+          <AppBar
+            title="Марафон"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            onLeftIconButtonTouchTap={::this.handleToggle}
+          />
+          <Drawer
+            className={s.Navigation}
+            docked={false}
+            width={200}
+            open={this.state.open}
+            onRequestChange={(open) => this.setState({open})}>
+            <MenuItem>
+              <Link to="/">Забеги</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/about">Информация</Link>
+            </MenuItem>
+          </Drawer>
+          <div className={s.Wrapper}>
+            {this.props.children}
+          </div>
+        </div>
+      </MuiThemeProvider>
     )
   }
-}
-
-App.childContextTypes = {
-  muiTheme: PropTypes.object.isRequired,
 }

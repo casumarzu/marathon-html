@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 
-import CircularProgress from 'material-ui/CircularProgress'
+import { CircularProgress } from 'material-ui'
 
 import SprintList from 'Components/sprints/SprintList'
 import * as sprintsActions from 'Actions/Sprints.Actions'
@@ -14,7 +14,7 @@ class Sprints extends Component {
     super(props)
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.sprintsActions.registerListeners()
   }
   render() {
@@ -28,7 +28,7 @@ class Sprints extends Component {
     }
     const { changeItem } = this.props.sprintsActions
     return (
-      <div className={styles.Wrapper}>
+      <div className={styles.FlexWrapper}>
         <h1>Забеги</h1>
         <SprintList list={ sprints } />
         { this.props.children }

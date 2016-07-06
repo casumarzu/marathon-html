@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { firebaseDb } from 'Apis/Google.Firebase'
+import { snapshotToList, recordFromSnapshot } from './Helpers'
 import {
   SHOW_PARTICIPANT_SUCCESS,
   SHOW_PARTICIPANT_ERROR,
@@ -8,9 +9,6 @@ import {
   CREATE_PARTICIPANT_SUCCESS,
   CREATE_PARTICIPANT_ERROR,
 } from 'Constants/Participants.Constants'
-
-import { snapshotToList, recordFromSnapshot } from './Helpers'
-
 
 export function showItem(id) {
   return (dispatch) => {
@@ -56,10 +54,5 @@ export function registerListeners() {
         payload: recordFromSnapshot(snapshot)
       })
     })
-
-    // ref.on('child_added', (snapshot) => dispatch({
-    //   type: CREATE_PARTICIPANT_SUCCESS,
-    //   payload: recordFromSnapshot(snapshot)
-    // }))
-  };
+  }
 }

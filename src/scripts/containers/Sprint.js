@@ -2,15 +2,14 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import CircularProgress from 'material-ui/CircularProgress'
+import { Router, Route, Link, browserHistory } from 'react-router'
+import { Card, CardHeader, CardTitle, CardText, Divider, CircularProgress, RaisedButton } from 'material-ui'
 
 import SprintList from 'Components/sprints/SprintList'
 import * as sprintListActions from 'Actions/Sprints.Actions'
 
-import ParticipantList from 'Components/participants/ParticipantList'
-import * as participantsActions from 'Actions/Participants.Actions'
-
-import Registration from 'Components/sprints/Registration'
+import DistanceList from 'Components/distances/DistanceList'
+import * as distancesActions from 'Actions/Distances.Actions'
 
 import s from 'Styles/Sprint.styl'
 import indexStyle from 'Styles/index.styl'
@@ -20,15 +19,16 @@ class Sprint extends Component {
     super(props)
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.state = { show: false }
     this.props.sprintListActions.registerListeners()
-    this.props.participantsActions.registerListeners()
+    this.props.distancesActions.registerListeners()
   }
+
   render() {
     const props = this.props
     const { id } = props.params
-    const { sprints, participants } = props
+    const { sprints, distances } = props
 
     if(!sprints.length){
       return(
@@ -38,53 +38,52 @@ class Sprint extends Component {
       )
     }
 
-    props.sprintListActions.showItem(id)
     const { sprint } = props
-    const { addItem } = props.participantsActions
-
-    // const sprint = _.find(sprints, { id: +id })
+    props.sprintListActions.showItem(id)
     const { title, info, schedule, organization, infrastructure, price, type } = sprint
+    const backUrl = () => browserHistory.push('/')
 
 
-    let RegistrationNode = ''
-    if(type === 'present') {
-      RegistrationNode = <Registration id={ id } addItem={ addItem } />
-    }
-
-    let ParticipantsNode = ''
-    if(participants.length){
-      let participantsFiltred = _.filter(participants, ['marathon', +id])
-      ParticipantsNode = <ParticipantList list={participantsFiltred} />
+    let DistancesNode = ''
+    if(distances.length){
+      let distancesFiltred = _.filter(distances, ['sprint', +id])
+      DistancesNode = <DistanceList list={distancesFiltred} sprintId={id} />
     }
 
     return (
-      <div className={indexStyle.Wrapper} style={{
-          display: 'flex',
-          flexFlow: 'row wrap',
-          maxWidth: 1200,
-          width: '100%',
-          margin: '30px auto 30px'
-        }}>
-        <div className={s['sprint-single']} style={{flexGrow: 1}}>
-          <h3>Забег: {title}</h3>
+      <div>
+        <RaisedButton label="Назад" primary={true} onTouchTap={ backUrl } />
+        <div className={indexStyle.FlexWrapper}>
+          <div className={indexStyle.FlexItem} style={{flexGrow: 1, width: '100%'}}>
+            <Card>
+              <CardHeader title="Забег:" subtitle={title} />
+              <Divider/>
 
-          <h4>Информация о забеге</h4>
-          <p>{ info }</p>
+              <CardTitle title="Информация о забеге" />
+              <CardText>{info}</CardText>
+              <Divider/>
 
-          <h4>Расписание</h4>
-          <p>{ schedule }</p>
+              <CardTitle title="Расписание" />
+              <CardText>{schedule}</CardText>
+              <Divider/>
 
-          <h4>Организация</h4>
-          <p>{ organization }</p>
+              <CardTitle title="Организация" />
+              <CardText>{organization}</CardText>
+              <Divider/>
 
-          <h4>Инфраструктура</h4>
-          <p>{ infrastructure }</p>
 
-          <h4>Цена</h4>
-          <p>{ price }</p>
+              <CardTitle title="Инфраструктура" />
+              <CardText>{infrastructure}</CardText>
+              <Divider/>
+
+              <CardTitle title="Цена" />
+              <CardText>{price}</CardText>
+            </Card>
+          </div>
+          <div className={indexStyle.FlexItem} style={{flexGrow: 1, width: '100%'}}>
+            { DistancesNode }
+          </div>
         </div>
-        <div style={{flexGrow: 1}}>{ RegistrationNode }</div>
-        <div style={{flexGrow: 1}}>{ ParticipantsNode }</div>
       </div>
     )
   }
@@ -92,20 +91,20 @@ class Sprint extends Component {
 
 Sprint.propTypes = {
   sprints: PropTypes.array.isRequired,
-  participants: PropTypes.array.isRequired
+  distances: PropTypes.array.isRequired
 }
 
 function mapStateToProps(state) {
   return {
     sprint: state.sprints.item,
     sprints: state.sprints.list,
-    participants: state.participants.list
+    distances: state.distances.list
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    participantsActions: bindActionCreators(participantsActions, dispatch),
+    distancesActions: bindActionCreators(distancesActions, dispatch),
     sprintListActions: bindActionCreators(sprintListActions, dispatch)
   }
 }

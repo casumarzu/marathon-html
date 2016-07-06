@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { firebaseDb } from 'Apis/Google.Firebase'
+import { snapshotToList, recordFromSnapshot } from './Helpers'
 import {
   SHOW_SPRINT_SUCCESS,
   SHOW_SPRINT_ERROR,
@@ -8,9 +9,6 @@ import {
   UPDATE_SPRINT_SUCCESS,
   UPDATE_SPRINT_ERROR,
 } from 'Constants/Sprints.Constants'
-
-import { snapshotToList, recordFromSnapshot } from './Helpers'
-
 
 export function showItem(id) {
   return (dispatch) => {
@@ -21,8 +19,6 @@ export function showItem(id) {
     })
   }
 }
-
-
 
 export function changeItem(sprint, changes) {
   return (dispatch) => {
@@ -36,18 +32,16 @@ export function changeItem(sprint, changes) {
       }
     }
 
-    firebaseDb.ref(`marathons/${sprint.key}`)
+    firebaseDb.ref(`sprints/${sprint.key}`)
     .update(changes, onError);
   }
 }
-
-
 
 let sprintsList = []
 
 export function registerListeners() {
   return (dispatch, getState) => {
-    const ref = firebaseDb.ref('marathons')
+    const ref = firebaseDb.ref('sprints')
     ref.on('value', snapshot => {
       sprintsList = snapshotToList(snapshot)
       dispatch({

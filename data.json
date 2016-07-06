@@ -1,5 +1,5 @@
 {
-  "marathons": {
+  "sprints": {
     "1": {
       "id": 1,
       "title": "Первый забег",
@@ -41,9 +41,36 @@
       "type": "present"
     }
   },
+  "distances": {
+    "1": {
+      "sprint": 1,
+      "price": 250,
+      "duration": 500
+    },
+    "2": {
+      "sprint": 1,
+      "price": 500,
+      "duration": 1000
+    },
+    "3": {
+      "sprint": 1,
+      "price": 1000,
+      "duration": 2000
+    },
+    "4": {
+      "sprint": 2,
+      "price": 300,
+      "duration": 500
+    },
+    "5": {
+      "sprint": 3,
+      "price": 400,
+      "duration": 500
+    }
+  },
   "participants": {
     "1": {
-      "marathon": 2,
+      "distance": 2,
       "name": "Иван Иванов",
       "gender": "male",
       "age": 25,
@@ -54,7 +81,7 @@
       "paid": true
     },
     "2": {
-      "marathon": 2,
+      "distance": 2,
       "name": "Петр Петров",
       "gender": "male",
       "age": 27,
@@ -65,7 +92,7 @@
       "paid": false
     },
     "3": {
-      "marathon": 1,
+      "distance": 1,
       "name": "Мария Петрова",
       "gender": "female",
       "age": 22,
