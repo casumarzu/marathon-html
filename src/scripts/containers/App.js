@@ -9,7 +9,14 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import mui, { AppBar, MenuItem, Drawer, Tabs, Tab, Card, CardActions, CardHeader, CardText, FlatButton } from 'material-ui'
 import { MuiThemeProvider } from 'material-ui/styles'
+
+import * as colors from 'material-ui/styles/colors'
+import { muiStyle } from 'Scripts/config'
 import s from 'Styles/index'
+
+// import Header from 'Components/layouts/Header'
+
+const muiTheme = getMuiTheme(muiStyle)
 
 function handleActive(tab) {
   browserHistory.push(tab.props.route)
@@ -34,8 +41,12 @@ export default class App extends Component {
 
   render() {
     return (
-      <MuiThemeProvider>
-        <div>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <div style={{
+            width: '100%',
+            height: '100%',
+            background: colors.yellow300
+          }}>
           <AppBar
             title="Марафон"
             iconClassNameRight="muidocs-icon-navigation-expand-more"

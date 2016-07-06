@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import { Card, CardHeader, CardTitle, CardText, Divider, CircularProgress, RaisedButton } from 'material-ui'
+import { Grid, Row, Col } from 'react-flexbox-grid'
 
 import SprintList from 'Components/sprints/SprintList'
 import * as sprintListActions from 'Actions/Sprints.Actions'
@@ -50,40 +51,46 @@ class Sprint extends Component {
       DistancesNode = <DistanceList list={distancesFiltred} sprintId={id} />
     }
 
+    const CardNode = (
+      <Card>
+        <CardHeader title="Забег:" subtitle={title} />
+        <Divider/>
+
+        <CardTitle title="Информация о забеге" />
+        <CardText>{info}</CardText>
+        <Divider/>
+
+        <CardTitle title="Расписание" />
+        <CardText>{schedule}</CardText>
+        <Divider/>
+
+        <CardTitle title="Организация" />
+        <CardText>{organization}</CardText>
+        <Divider/>
+
+
+        <CardTitle title="Инфраструктура" />
+        <CardText>{infrastructure}</CardText>
+        <Divider/>
+
+        <CardTitle title="Цена" />
+        <CardText>{price}</CardText>
+      </Card>
+    )
+
     return (
       <div>
         <RaisedButton label="Назад" primary={true} onTouchTap={ backUrl } />
-        <div className={indexStyle.FlexWrapper}>
-          <div className={indexStyle.FlexItem} style={{flexGrow: 1, width: '100%'}}>
-            <Card>
-              <CardHeader title="Забег:" subtitle={title} />
-              <Divider/>
-
-              <CardTitle title="Информация о забеге" />
-              <CardText>{info}</CardText>
-              <Divider/>
-
-              <CardTitle title="Расписание" />
-              <CardText>{schedule}</CardText>
-              <Divider/>
-
-              <CardTitle title="Организация" />
-              <CardText>{organization}</CardText>
-              <Divider/>
-
-
-              <CardTitle title="Инфраструктура" />
-              <CardText>{infrastructure}</CardText>
-              <Divider/>
-
-              <CardTitle title="Цена" />
-              <CardText>{price}</CardText>
-            </Card>
-          </div>
-          <div className={indexStyle.FlexItem} style={{flexGrow: 1, width: '100%'}}>
-            { DistancesNode }
-          </div>
-        </div>
+        <Grid>
+          <Row>
+            <Col xs={12} lg={8}>{CardNode}</Col>
+            <Col xs={12} lg={4}>{DistancesNode}</Col>
+          </Row>
+        </Grid>
+        {/*<div className={indexStyle.FlexWrapper}>
+          <div className={indexStyle.FlexItem} style={{flexGrow: 1, width: '100%'}}>{CardNode}</div>
+          <div className={indexStyle.FlexItem} style={{flexGrow: 1, width: '100%'}}>{ DistancesNode }</div>
+        </div>*/}
       </div>
     )
   }

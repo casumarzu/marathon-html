@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import ParticipantItem from './ParticipantItem'
 import _ from 'lodash'
 import { Card, CardHeader, CardText } from 'material-ui'
+import ParticipantItem from './ParticipantItem'
 import s from 'Styles/Participant.styl'
 
 

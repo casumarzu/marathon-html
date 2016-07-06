@@ -9,7 +9,7 @@ new WebpackDevServer(webpack(config), {
   historyApiFallback: true,
   proxy: {
     '/api/*': {
-      target: 'http://localhost:8000/api/',
+      target: 'http://localhost:3000/api/',
       rewrite: function(req) {
         req.url = req.url.replace(/^\/api/, '');
       }
