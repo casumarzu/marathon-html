@@ -122,7 +122,7 @@ export default class SprintItem extends Component {
             }}>
             <FormItem title="Имя" type="text" name="name" handleInputChange={::this.handleInputChange} value={name} />
             <FormItem title="E-mail" type="text" name="e_mail" handleInputChange={::this.handleInputChange} value={e_mail} />
-            <FormItem title="Возрастная группа" type="age_group" name="age_group" handleInputChange={::this.handleInputChange} value={age_group} />
+            <FormItem title="Возрастная группа" type="text" name="age_group" handleInputChange={::this.handleInputChange} value={age_group} />
             <RadioButtonGroup name="sex" defaultSelected="1" valueSelected={sex} value={sex} onChange={::this.handleRadioChange} style={GroupStyle}>
               <RadioButton value="1" label="Male"/>
               <RadioButton value="2" label="female" />

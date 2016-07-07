@@ -1,5 +1,4 @@
 import $ from 'jquery'
-window.$ = $
 function onDone (json) {
   return json
 }
@@ -39,7 +38,9 @@ export class Distances {
 
 export class Participants {
   index(race_id, distance_id) {
-    return fetch(`/api/v1/races/${race_id}/distances/${distance_id}/users`)
+    return fetch(`/api/v1/races/${race_id}/distances/${distance_id}/users`,{
+      method: 'GET'
+    })
       .then(function(response) {
         return response.json()
       }).then(onDone).catch(onFail)
@@ -50,19 +51,26 @@ export class Participants {
         return response.json()
       }).then(onDone).catch(onFail)
   }
-  add(race_id, distance_id, name, e_mail, age_group, sex, club, nation, city, phone) {
+  add(race_id, distance_id, name, age_group, e_mail, sex, club, nation, city, phone) {
     const data = {
       name, e_mail, age_group, sex, club, nation, city, phone
     }
-    return fetch(`/api/v1/races/${race_id}/distances/${distance_id}/users`, {
-      method: 'POST',
+    const url = `/api/v1/races/${race_id}/distances/${distance_id}/users`
+    // return fetch(url, {
+    //   method: 'POST',
+    //   boby: data
+    // })
+    //   .then(function(response) {
+    //     return response.json()
+    //   }).then(onDone).catch(onFail)
+
+    return $.ajax({
       type: 'POST',
       dataType: 'json',
-      boby: data
+      url,
+      data
     })
-      .then(function(response) {
-        return response.json()
-      }).then(onDone).catch(onFail)
+
   }
 }
 
@@ -77,4 +85,4 @@ $.ajax({
 }).done( data => console.log(data) )
 .fail( err => console.error(err))
 */
-const wait = (delay) => new Promise( resolve => setTimeou(resolve, delay) )
+// const wait = (delay) => new Promise( resolve => setTimeou(resolve, delay) )

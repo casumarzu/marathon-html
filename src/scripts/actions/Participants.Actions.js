@@ -42,17 +42,36 @@ export function show(race_id, distance_id, user_id) {
 
 export function add(race_id, distance_id, name, age_group, e_mail, sex, club, nation, city, phone, access, payment) {
   return (dispatch) => {
-    participants.add(race_id, distance_id, name, age_group, e_mail, sex, club, nation, city, phone, access, payment).then(
-      json => {
-        return dispatch({
-          type: CREATE_PARTICIPANT_SUCCESS,
-          payload: json
-        })
-      },
+    // participants.add(race_id, distance_id, name, age_group, e_mail, sex, club, nation, city, phone, access, payment).then(
+    //   json => {
+    //     return dispatch({
+    //       type: CREATE_PARTICIPANT_SUCCESS,
+    //       payload: json
+    //     })
+    //   },
+    //   err => dispatch({
+    //     type: CREATE_PARTICIPANT_ERROR,
+    //     payload: err
+    //   })
+    // )
+
+
+    participants.add(race_id, distance_id, name, age_group, e_mail, sex, club, nation, city, phone, access, payment)
+    .done(
+      json => dispatch({
+        type: CREATE_PARTICIPANT_SUCCESS,
+        payload: json
+      })
+    )
+    .fail(
       err => dispatch({
         type: CREATE_PARTICIPANT_ERROR,
         payload: err
       })
     )
+
+
+
+
   }
 }
