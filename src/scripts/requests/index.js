@@ -1,12 +1,12 @@
 import $ from 'jquery'
 
-window.sprints = function sprints(page, per_page) {
-  $.ajax({
-    type: 'GET',
-    url: '/api/v1/races',
-    dataType: 'json',
-    data: { page, per_page }
-  }).done((data) => {
-    console.log(data);
-  }).fail((data) => console.error(data))
+const sprints = window.sprints = (page, per_page) => {
+  fetch('/api/v1/races')
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    console.log('parsed json', json)
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
 }

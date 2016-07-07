@@ -13,6 +13,18 @@ const GroupStyle = {
   padding: '20px 0'
 }
 
+let defaultState = {
+  name: '',
+  e_mail: '',
+  sex: '1',
+  age_group: '',
+  nation: '',
+  city: '',
+  club: '',
+  phone: '',
+  access: false,
+  payment: false
+}
 
 export default class SprintItem extends Component {
   constructor(props) {
@@ -20,19 +32,10 @@ export default class SprintItem extends Component {
   }
 
   componentWillMount() {
-    this.state = {
-      open: false,
-      distance: +this.props.id,
-      name: '',
-      gender: 'male',
-      age: '',
-      country: '',
-      club: '',
-      phone: '',
-      allowed: false,
-      paid: false,
-      clear: false
-    }
+    defaultState = Object.assign(defaultState, {
+      open: false
+    })
+    this.state = defaultState
   }
 
   handleOpen() {
@@ -45,26 +48,19 @@ export default class SprintItem extends Component {
   }
 
   clearFields() {
-    this.setState({
-      name: '',
-      age: '',
-      gender: 'male',
-      country: '',
-      club: '',
-      phone: '',
-      allowed: false,
-      paid: false
-    })
+    this.setState(defaultState)
   }
 
 
   handleRegistration(e) {
     e.preventDefault()
+    const { props, state } = this
+    const { race_id, distance_id } = props
     this.handleOpen()
-    let stateCloned = _.clone(this.state)
-    delete stateCloned.clear
+    let stateCloned = _.clone(state)
     delete stateCloned.open
-    this.props.addItem(stateCloned)
+    const { name, age_group, e_mail, sex, club, nation, city, phone, access, payment } = stateCloned
+    props.add(race_id, distance_id, name, age_group, e_mail, sex, club, nation, city, phone, access, payment)
     this.clearFields()
   }
 
@@ -112,7 +108,7 @@ export default class SprintItem extends Component {
       </Dialog>
     )
 
-    const { name, age, gender, club, country, phone, allowed, paid } = this.state
+    const { name, age_group, e_mail, sex, club, nation, city, phone, access, payment } = this.state
 
     return (
       <div className={ s.Registration }>
@@ -125,17 +121,19 @@ export default class SprintItem extends Component {
               boxSizing: 'border-box'
             }}>
             <FormItem title="Имя" type="text" name="name" handleInputChange={::this.handleInputChange} value={name} />
-            <FormItem title="Возраст" type="age" name="age" handleInputChange={::this.handleInputChange} value={age} />
-            <RadioButtonGroup name="gender" defaultSelected="male" valueSelected={gender} value={gender} onChange={::this.handleRadioChange} style={GroupStyle}>
-              <RadioButton value="male" label="Male"/>
-              <RadioButton value="female" label="female" />
+            <FormItem title="E-mail" type="text" name="e_mail" handleInputChange={::this.handleInputChange} value={e_mail} />
+            <FormItem title="Возрастная группа" type="age_group" name="age_group" handleInputChange={::this.handleInputChange} value={age_group} />
+            <RadioButtonGroup name="sex" defaultSelected="1" valueSelected={sex} value={sex} onChange={::this.handleRadioChange} style={GroupStyle}>
+              <RadioButton value="1" label="Male"/>
+              <RadioButton value="2" label="female" />
             </RadioButtonGroup>
             <FormItem title="Клуб" type="text" name="club" handleInputChange={::this.handleInputChange} value={club} />
-            <FormItem title="Страна, город" type="text" name="country" handleInputChange={::this.handleInputChange} value={country} />
+            <FormItem title="Страна" type="text" name="nation" handleInputChange={::this.handleInputChange} value={nation} />
+            <FormItem title="Город" type="text" name="city" handleInputChange={::this.handleInputChange} value={city} />
             <FormItem title="Телефон" type="phone" name="phone" handleInputChange={::this.handleInputChange} value={phone} />
             <div style={GroupStyle}>
-              <Checkbox label="Допущен" checked={allowed} name="allowed" onCheck={::this.handleCheckBoxChange} />
-              <Checkbox label="Оплатил" checked={paid} name="paid" onCheck={::this.handleCheckBoxChange} />
+              <Checkbox label="Допущен" checked={access} name="access" onCheck={::this.handleCheckBoxChange} />
+              <Checkbox label="Оплатил" checked={payment} name="payment" onCheck={::this.handleCheckBoxChange} />
             </div>
             <RaisedButton type="submit" label="Регистрация" primary={true} />
             { dialogNode }

@@ -16,7 +16,7 @@ export default class Routes extends Component {
           <Route path="about" component={ About } />
           <Route path="sprints" component={ Sprints } />
           <Route path="sprint/:id" component={ Sprint } />
-          <Route path="sprint/:sprintId/distance/:distanceId" component={ Distance } />
+          <Route path="sprint/:race_id/distance/:distance_id" component={ Distance } />
         </Route>
       </Router>
     )

@@ -20,38 +20,40 @@ class Distance extends Component {
   }
 
   componentWillMount() {
-    this.props.participantsActions.registerListeners()
-    // this.setState()
-    const { id } = this.props.params
-    const { showItem } = this.props.distancesActions
+    const { props } = this
+    const { race_id, distance_id } = props.params
+    const { index, add } = props.participantsActions
+    index(race_id, distance_id)
   }
 
   render() {
     const { props } = this
-    const { sprintId, distanceId } = props.params
+    const { race_id, distance_id } = props.params
+    const { index, add } = props.participantsActions
     const { participants } = props
-    const { addItem } = props.participantsActions
 
     let RegistrationNode = ''
     // if(type === 'present') {
-    //   RegistrationNode = <Registration id={ id } addItem={ addItem } />
+    //   RegistrationNode = <Registration race_id={race_id} distance_id={distance_id} add={ add } />
     // }
-    RegistrationNode = <Registration id={ distanceId } addItem={ addItem } />
+    RegistrationNode = <Registration race_id={race_id} distance_id={distance_id} add={ add } />
 
     let ParticipantsNode = ''
     if(participants.length){
-      const participantsFiltred = _.filter(participants, ['distance', +distanceId])
-      ParticipantsNode = <ParticipantList list={ participantsFiltred } />
+      ParticipantsNode = <ParticipantList list={ participants } />
     }
-    const backUrl = () => browserHistory.push(`/sprint/${sprintId}`)
+    const backUrl = () => browserHistory.push(`/sprint/${race_id}`)
     return (
       <div>
         <RaisedButton label="Назад" primary={true} onTouchTap={ backUrl } />
-        <div className={s.FlexItem} style={{flexGrow: 1}}>
+
+        <div>
           <h1>Дистанция</h1>
         </div>
-        <div className={s.FlexItem} style={{flexGrow: 1}}>{ RegistrationNode }</div>
-        <div className={s.FlexItem} style={{flexGrow: 1}}>{ ParticipantsNode }</div>
+        <div>
+          <div className={s.FlexItem} style={{flexGrow: 1}}>{ RegistrationNode }</div>
+          <div className={s.FlexItem} style={{flexGrow: 1}}>{ ParticipantsNode }</div>
+        </div>
       </div>
     )
   }

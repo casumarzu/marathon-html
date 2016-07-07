@@ -8,13 +8,13 @@ export default class DistanceItem extends Component {
     super(props)
   }
   render() {
-    const { duration, price, id, sprint, sprintId } = this.props
+    const { id, race_id, length, cost } = this.props
     return (
       <div>
-        <Link to={`/sprint/${sprintId}/distance/${id}`}>
+        <Link to={`/sprint/${race_id}/distance/${id}`}>
           <Card>
-            <CardTitle title={ `Дистанция: ${duration}м` }/>
-            <CardHeader title={ `Цена: ${price}р`}/>
+            <CardTitle title={ `Дистанция: ${length}м` }/>
+            <CardHeader title={ `Цена: ${cost}р`}/>
             <CardText></CardText>
           </Card>
         </Link>

@@ -11,11 +11,11 @@ export default class ParticipanItem extends Component {
   }
 
   render() {
-    const { id, name, age, country, club, gender, allowed, paid } = this.props
+    const { id, name, age_group, e_mail, sex, club, nation, city, phone, access, payment } = this.props
     let border
-    if(gender==='male'){
+    if(sex === 1){
       border = '#5abcea'
-    }else if(gender==='female'){
+    }else if(sex === 2){
       border = '#e86363'
     }
     return (
@@ -30,11 +30,11 @@ export default class ParticipanItem extends Component {
           showExpandableButton={true}
         />
       <CardText expandable={true}>
-          <p>Возраст: <span>{age}</span></p>
-          <p>Страна, город: <span>{country}</span></p>
+          <p>Возрастная группа: <span>{age_group}</span></p>
+          <p>Страна, город: <span>{nation}</span></p>
           <p>Клуб: <span>{club}</span></p>
-          <p>Допущен: <span>{allowed.toString()}</span></p>
-          <p>Оплачен: <span>{paid.toString()}</span></p>
+          <p>Допущен: <span>{access.toString()}</span></p>
+          <p>Оплачен: <span>{payment.toString()}</span></p>
         </CardText>
       </Card>
     )

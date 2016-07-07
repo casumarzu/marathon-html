@@ -16,10 +16,8 @@ import configureStore from './store/configureStore'
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
-import 'Scripts/requests'
-
 render(
-  <Provider store={store}>
+  <Provider store={store} >
     <Routes history={history}/>
   </Provider>
   , document.getElementById('root')

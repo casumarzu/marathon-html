@@ -12,18 +12,19 @@ export default class ParticipantList extends Component {
   render() {
     const { list } = this.props
     const participantsNode = list.map((participant) => {
-      const { id, name, age, country, club, gender, allowed, paid } = participant
+      const { id, name, age_group, e_mail, sex, club, nation, city, phone, access, payment } = participant
       return (
         <ParticipantItem
           id={ id }
           key={ id }
           name={ name }
-          age={ age }
-          country={ country }
+          age_group={ age_group }
+          nation={ nation }
+          city={ city }
           club={ club }
-          gender={ gender }
-          allowed={ allowed }
-          paid={ paid }
+          sex={ sex }
+          access={ access }
+          payment={ payment }
         />
       )
     })

@@ -3,9 +3,9 @@ import * as colors from 'material-ui/styles/colors'
 export const muiStyle = {
   fontFamily: 'Roboto, sans-serif',
   palette: {
-    primary1Color: colors.deepPurple500,
-    primary2Color: colors.deepPurple700,
-    primary3Color: colors.deepPurple400,
+    primary1Color: colors.pink500,
+    primary2Color: colors.pink700,
+    primary3Color: colors.pink400,
     accent1Color: colors.pinkA200,
     accent2Color: colors.grey100,
     accent3Color: colors.grey500,

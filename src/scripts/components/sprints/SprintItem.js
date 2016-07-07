@@ -12,7 +12,7 @@ export default class SprintItem extends Component {
   }
 
   render() {
-    const {id, title, info, schedule, organization, infrastructure, price, type} = this.props
+    const {id, information, organization, infrastructure, type} = this.props
     const sprintType = `__${type}`
     let supText
     if(type === 'past') {
@@ -26,15 +26,15 @@ export default class SprintItem extends Component {
       <div className={`${styles['sprint-list__item']} ${styles[sprintType]}`}>
         <Link to={`/sprint/${id}`}>
           <Card>
-            <CardHeader title={`Забег: ${title}`} subtitle={supText}/>
+            <CardHeader title={`Забег: ${information}`} subtitle={supText}/>
             <Divider/>
 
-            <CardTitle title="Информация о забеге" />
-            <CardText>{info}</CardText>
+            <CardTitle title="Организация" />
+            <CardText>{organization}</CardText>
             <Divider/>
 
-            <CardTitle title="Расписание" />
-            <CardText>{schedule}</CardText>
+            <CardTitle title="Инфраструктура" />
+            <CardText>{infrastructure}</CardText>
             <Divider/>
           </Card>
         </Link>
