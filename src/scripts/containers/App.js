@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import injectTapEventPlugin from 'react-tap-event-plugin'
-injectTapEventPlugin()
 
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
@@ -31,13 +29,9 @@ export default class App extends Component {
     this.state = {open: false}
   }
 
-  handleToggle() {
-    this.setState({open: !this.state.open})
-  }
+  handleToggle() { this.setState({ open: !this.state.open }) }
 
-  handleClose() {
-    this.setState({open: false})
-  }
+  handleClose() { this.setState({ open: false }) }
 
   render() {
     return (
@@ -52,7 +46,7 @@ export default class App extends Component {
             iconClassNameRight="muidocs-icon-navigation-expand-more"
             onLeftIconButtonTouchTap={::this.handleToggle}
           />
-          <Drawer
+          {/*<Drawer
             className={s.Navigation}
             docked={false}
             width={200}
@@ -64,7 +58,7 @@ export default class App extends Component {
             <MenuItem>
               <Link to="/about">Информация</Link>
             </MenuItem>
-          </Drawer>
+          </Drawer>*/}
           <div className={s.Wrapper}>
             {this.props.children}
           </div>

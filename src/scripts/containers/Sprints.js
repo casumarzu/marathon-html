@@ -28,6 +28,7 @@ class Sprints extends Component {
       )
     }
     const { changeItem } = this.props.sprintsActions
+
     return (
       <div className={styles.FlexWrapper}>
         <h1>Забеги</h1>

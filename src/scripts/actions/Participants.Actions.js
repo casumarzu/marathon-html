@@ -54,8 +54,6 @@ export function add(race_id, distance_id, name, age_group, e_mail, sex, club, na
     //     payload: err
     //   })
     // )
-
-
     participants.add(race_id, distance_id, name, age_group, e_mail, sex, club, nation, city, phone, access, payment)
     .done(
       json => dispatch({
@@ -69,9 +67,5 @@ export function add(race_id, distance_id, name, age_group, e_mail, sex, club, na
         payload: err
       })
     )
-
-
-
-
   }
 }

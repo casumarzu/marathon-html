@@ -1,4 +1,5 @@
 import 'babel-polyfill'
+require('react-tap-event-plugin')()
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { createStore, combineReducers, applyMiddleware } from 'redux'

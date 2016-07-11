@@ -1,5 +1,4 @@
 import * as colors from 'material-ui/styles/colors'
-
 export const muiStyle = {
   fontFamily: 'Roboto, sans-serif',
   palette: {

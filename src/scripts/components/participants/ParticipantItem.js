@@ -33,8 +33,8 @@ export default class ParticipanItem extends Component {
           <p>Возрастная группа: <span>{age_group}</span></p>
           <p>Страна, город: <span>{nation}</span></p>
           <p>Клуб: <span>{club}</span></p>
-          <p>Допущен: <span>{access.toString()}</span></p>
-          <p>Оплачен: <span>{payment.toString()}</span></p>
+          {/*<p>Допущен: <span>{access.toString()}</span></p>*/}
+          {/*<p>Оплачен: <span>{payment.toString()}</span></p>*/}
         </CardText>
       </Card>
     )

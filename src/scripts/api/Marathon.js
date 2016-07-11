@@ -23,13 +23,15 @@ export class Sprints {
 
 export class Distances {
   index(race_id) {
-    return fetch(`/api/v1/races/${race_id}/distances`)
+    const url = `/api/v1/races/${race_id}/distances`
+    return fetch(url)
       .then(function(response) {
         return response.json()
       }).then(onDone).catch(onFail)
   }
   show(race_id, distance_id) {
-    return fetch(`/api/v1/races/${race_id}/distances/${distance_id}`)
+    const url = `/api/v1/races/${race_id}/distances/${distance_id}`
+    return fetch(url)
       .then(function(response) {
         return response.json()
       }).then(onDone).catch(onFail)
@@ -38,7 +40,8 @@ export class Distances {
 
 export class Participants {
   index(race_id, distance_id) {
-    return fetch(`/api/v1/races/${race_id}/distances/${distance_id}/users`,{
+    const url = `/api/v1/races/${race_id}/distances/${distance_id}/users`
+    return fetch(url,{
       method: 'GET'
     })
       .then(function(response) {
@@ -46,7 +49,8 @@ export class Participants {
       }).then(onDone).catch(onFail)
   }
   show(race_id, distance_id, user_id) {
-    return fetch(`/api/v1/races/${race_id}/distances/${distance_id}/users/${user_id}`)
+    const url = `/api/v1/races/${race_id}/distances/${distance_id}/users/${user_id}`
+    return fetch(url)
       .then(function(response) {
         return response.json()
       }).then(onDone).catch(onFail)
