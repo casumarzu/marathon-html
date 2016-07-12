@@ -1,8 +1,12 @@
 import $ from 'jquery'
+window.$ = $
+
 function onDone (json) {
+  debugger
   return json
 }
 function onFail (err) {
+  debugger
   return err
 }
 
@@ -10,6 +14,7 @@ export class Sprints {
   index() {
     return fetch('/api/v1/races')
       .then(function(response) {
+        debugger
         return response.json()
       }).then(onDone).catch(onFail)
   }
