@@ -120,10 +120,11 @@ export default class SprintItem extends Component {
             height: '100%'
           }}>
           <CardTitle title="Регистрация участника:"/>
-          <form onSubmit={::this.handleRegistration} style={{
+          <form onSubmit={::this.handleRegistration}
+            style={{
               padding: '20px',
               boxSizing: 'border-box'
-            }}>
+          }}>
             <FormItem title="Имя" type="text" name="name" handleInputChange={::this.handleInputChange} value={name} />
             <FormItem title="E-mail" type="text" name="e_mail" handleInputChange={::this.handleInputChange} value={e_mail} />
             {/*<FormItem title="Возрастная группа" type="text" name="age_group" handleInputChange={::this.handleInputChange} value={age_group} />*/}

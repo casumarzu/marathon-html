@@ -41,7 +41,7 @@ class Sprint extends Component {
       )
     }
 
-    const { information, infrastructure, organizational_issues, conditions_of_registration } = sprint
+    const { name, infrastructure, organizational_issues, conditions_of_registration } = sprint
     const backUrl = () => browserHistory.push('/')
 
     let DistancesNode = ''
@@ -51,7 +51,7 @@ class Sprint extends Component {
 
     const CardNode = (
       <Card>
-        <CardHeader title="Забег:" subtitle={information} />
+        <CardHeader title="Забег:" subtitle={name} />
         <Divider/>
 
         <CardTitle title="Информация о забеге" />

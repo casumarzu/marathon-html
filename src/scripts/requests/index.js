@@ -1,6 +1,6 @@
 import $ from 'jquery'
 
-const sprints = window.sprints = (page, per_page) => {
+const sprints = window.sprints = (page, per) => {
   fetch('/api/v1/races')
   .then(function(response) {
     return response.json()

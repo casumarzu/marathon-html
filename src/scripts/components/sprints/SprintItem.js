@@ -12,7 +12,7 @@ export default class SprintItem extends Component {
   }
 
   render() {
-    const { id, information, organization, infrastructure, type } = this.props
+    const { id, name, organization, infrastructure, type } = this.props
     const sprintType = `__${type}`
     let supText
 
@@ -34,7 +34,7 @@ export default class SprintItem extends Component {
       <div className={`${styles['sprint-list__item']} ${styles[sprintType]}`}>
         <Link to={`/sprint/${id}`}>
           <Card>
-            <CardHeader title={`Забег: ${information}`} subtitle={supText}/>
+            <CardHeader title={`Забег: ${name}`} subtitle={supText}/>
             <Divider/>
 
             <CardTitle title="Организация" />

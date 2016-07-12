@@ -17,12 +17,12 @@ export default class SprintList extends Component {
     const { list, type } = this.props
 
     const sprintListView = list.map((sprint) => {
-      const { id, information, organizational_issues, infrastructure, type } = sprint
+      const { id, name, organizational_issues, infrastructure, type } = sprint
       return (
         <SprintItem
           id={ id }
           key={ id }
-          information={ information }
+          name={ name }
           organization={ organizational_issues }
           infrastructure={ infrastructure }
           type={ type } />
