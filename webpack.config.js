@@ -15,8 +15,16 @@ var config = {
     'react-redux',
     'react-router',
     'react-router-redux',
+    'react-tap-event-plugin',
     'redux',
-    'lodash'
+    'redux-devtools',
+    'redux-devtools-log-monitor',
+    'redux-devtools-dock-monitor',
+    'lodash',
+    'jquery',
+    'babel-polyfill',
+    'whatwg-fetch',
+    'material-ui'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
