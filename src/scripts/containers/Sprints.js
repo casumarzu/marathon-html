@@ -30,10 +30,12 @@ class Sprints extends Component {
     const { changeItem } = this.props.sprintsActions
 
     return (
-      <div className={styles.FlexWrapper}>
+      <div>
         <h1>Забеги</h1>
-        <SprintList list={ sprints } />
-        { this.props.children }
+        <div className={styles.FlexWrapper}>
+          <SprintList list={ sprints } />
+          { this.props.children }
+        </div>
       </div>
     )
   }

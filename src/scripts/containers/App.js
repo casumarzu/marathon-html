@@ -36,11 +36,7 @@ export default class App extends Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <div style={{
-            width: '100%',
-            height: '100%',
-            background: colors.yellow300
-          }}>
+        <div>
           <AppBar
             title="Марафон"
             iconClassNameRight="muidocs-icon-navigation-expand-more"

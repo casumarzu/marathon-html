@@ -5,10 +5,15 @@ import thunk from 'redux-thunk'
 
 export default function configureStore(initialState) {
   const logger = createLogger()
+
+  let middleWare = applyMiddleware(thunk)
+  if(module.hot) {
+    middleWare = applyMiddleware(thunk, logger)
+  }
   const store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(thunk, logger)
+    middleWare
   )
 
   if (module.hot) {

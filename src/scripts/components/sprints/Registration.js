@@ -136,9 +136,10 @@ export default class SprintItem extends Component {
               <MenuItem value={4} primaryText="21-31" />
               <MenuItem value={5} primaryText="31 и более" />
             </SelectField>
+            <CardHeader title="Пол:"/>
             <RadioButtonGroup name="sex" defaultSelected="1" valueSelected={sex} value={sex} onChange={::this.handleRadioChange} style={GroupStyle}>
-              <RadioButton value="1" label="Male"/>
-              <RadioButton value="2" label="female" />
+              <RadioButton value="1" label="Мужской"/>
+              <RadioButton value="2" label="Женский" />
             </RadioButtonGroup>
             <FormItem title="Клуб" type="text" name="club" handleInputChange={::this.handleInputChange} value={club} />
             <FormItem title="Страна" type="text" name="nation" handleInputChange={::this.handleInputChange} value={nation} />

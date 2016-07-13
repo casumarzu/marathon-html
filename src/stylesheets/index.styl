@@ -10,6 +10,11 @@ body, html
   // & > *:first-child
   //   min-width 100%
   //   min-height 100%
+main
+  min-height 100%
+  width 100%
+  height auto
+  background #fffe84
 
 .Wrapper
   max-width 1200px
@@ -18,12 +23,12 @@ body, html
 .FlexWrapper
   margin 0 auto
   display flex
-  justify-content space-around
+  justify-content space-between
   flex-flow row wrap
-  align-items stretch
+
 .FlexItem
   padding 10px
-  align-items center
+  align-items flex-start
 
 a, a:visited, a:active
   // color #fff
