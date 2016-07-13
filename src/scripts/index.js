@@ -1,4 +1,5 @@
 import 'babel-polyfill'
+import 'whatwg-fetch'
 require('react-tap-event-plugin')()
 import React, { Component } from 'react'
 import { render } from 'react-dom'
