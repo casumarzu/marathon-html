@@ -7,14 +7,14 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import mui, { AppBar, MenuItem, Drawer, Tabs, Tab, Card, CardActions, CardHeader, CardText, FlatButton } from 'material-ui'
 import { MuiThemeProvider } from 'material-ui/styles'
-
 import * as colors from 'material-ui/styles/colors'
+const muiTheme = getMuiTheme(muiStyle)
+
 import { muiStyle } from 'Scripts/config'
 import s from 'Styles/index'
 
-// import Header from 'Components/layouts/Header'
+import DevTools from 'Containers/DevTools'
 
-const muiTheme = getMuiTheme(muiStyle)
 
 function handleActive(tab) {
   browserHistory.push(tab.props.route)
@@ -34,6 +34,10 @@ export default class App extends Component {
   handleClose() { this.setState({ open: false }) }
 
   render() {
+    let DevToolsNode = ''
+    if(module.hot) {
+      DevToolsNode = <DevTools />
+    }
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
@@ -42,22 +46,10 @@ export default class App extends Component {
             iconClassNameRight="muidocs-icon-navigation-expand-more"
             onLeftIconButtonTouchTap={::this.handleToggle}
           />
-          {/*<Drawer
-            className={s.Navigation}
-            docked={false}
-            width={200}
-            open={this.state.open}
-            onRequestChange={(open) => this.setState({open})}>
-            <MenuItem>
-              <Link to="/">Забеги</Link>
-            </MenuItem>
-            <MenuItem>
-              <Link to="/about">Информация</Link>
-            </MenuItem>
-          </Drawer>*/}
           <div className={s.Wrapper}>
             {this.props.children}
           </div>
+          {DevToolsNode}
         </div>
       </MuiThemeProvider>
     )
