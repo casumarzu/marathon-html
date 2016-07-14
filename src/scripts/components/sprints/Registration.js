@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import _ from 'lodash'
-import { Dialog, Card, CardHeader, CardTitle, Divider, FlatButton, RaisedButton, Checkbox, RadioButton, RadioButtonGroup } from 'material-ui'
+import { Dialog, Card, CardHeader, CardTitle, Divider, FlatButton, RaisedButton, Checkbox, RadioButton, RadioButtonGroup, SelectField, MenuItem } from 'material-ui'
 import { colors } from 'material-ui/styles'
 import ActionFavorite from 'material-ui/svg-icons/action/favorite'
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border'
@@ -13,6 +13,18 @@ const GroupStyle = {
   padding: '20px 0'
 }
 
+let defaultState = {
+  name: '',
+  e_mail: '',
+  sex: '1',
+  age_group: 0,
+  nation: '',
+  city: '',
+  club: '',
+  phone: '',
+  access: false,
+  payment: false
+}
 
 export default class SprintItem extends Component {
   constructor(props) {
@@ -20,19 +32,10 @@ export default class SprintItem extends Component {
   }
 
   componentWillMount() {
-    this.state = {
-      open: false,
-      distance: +this.props.id,
-      name: '',
-      gender: 'male',
-      age: '',
-      country: '',
-      club: '',
-      phone: '',
-      allowed: false,
-      paid: false,
-      clear: false
-    }
+    defaultState = Object.assign(defaultState, {
+      open: false
+    })
+    this.state = defaultState
   }
 
   handleOpen() {
@@ -45,26 +48,19 @@ export default class SprintItem extends Component {
   }
 
   clearFields() {
-    this.setState({
-      name: '',
-      age: '',
-      gender: 'male',
-      country: '',
-      club: '',
-      phone: '',
-      allowed: false,
-      paid: false
-    })
+    this.setState(defaultState)
   }
 
 
   handleRegistration(e) {
     e.preventDefault()
+    const { props, state } = this
+    const { race_id, distance_id } = props
     this.handleOpen()
-    let stateCloned = _.clone(this.state)
-    delete stateCloned.clear
+    let stateCloned = _.clone(state)
     delete stateCloned.open
-    this.props.addItem(stateCloned)
+    const { name, age_group, e_mail, sex, club, nation, city, phone, access, payment } = stateCloned
+    props.add(race_id, distance_id, name, age_group, e_mail, sex, club, nation, city, phone, access, payment)
     this.clearFields()
   }
 
@@ -82,6 +78,10 @@ export default class SprintItem extends Component {
   handleRadioChange(event) {
     const { name, value } = event.target
     this.handleChange(name, value)
+  }
+
+  handleSelect(event, index, value) {
+    this.handleChange('age_group', value)
   }
 
   handleCheckBoxChange(event, isInputChecked) {
@@ -112,7 +112,7 @@ export default class SprintItem extends Component {
       </Dialog>
     )
 
-    const { name, age, gender, club, country, phone, allowed, paid } = this.state
+    const { name, age_group, e_mail, sex, club, nation, city, phone, access, payment } = this.state
 
     return (
       <div className={ s.Registration }>
@@ -120,23 +120,35 @@ export default class SprintItem extends Component {
             height: '100%'
           }}>
           <CardTitle title="Регистрация участника:"/>
-          <form onSubmit={::this.handleRegistration} style={{
+          <form onSubmit={::this.handleRegistration}
+            style={{
               padding: '20px',
               boxSizing: 'border-box'
-            }}>
+          }}>
             <FormItem title="Имя" type="text" name="name" handleInputChange={::this.handleInputChange} value={name} />
-            <FormItem title="Возраст" type="age" name="age" handleInputChange={::this.handleInputChange} value={age} />
-            <RadioButtonGroup name="gender" defaultSelected="male" valueSelected={gender} value={gender} onChange={::this.handleRadioChange} style={GroupStyle}>
-              <RadioButton value="male" label="Male"/>
-              <RadioButton value="female" label="female" />
+            <FormItem title="E-mail" type="text" name="e_mail" handleInputChange={::this.handleInputChange} value={e_mail} />
+            {/*<FormItem title="Возрастная группа" type="text" name="age_group" handleInputChange={::this.handleInputChange} value={age_group} />*/}
+            <SelectField value={age_group} name="age_group" onChange={::this.handleSelect}>
+              <MenuItem value={0} primaryText="Возраст" />
+              <MenuItem value={1} primaryText="14-16" />
+              <MenuItem value={2} primaryText="16-18" />
+              <MenuItem value={3} primaryText="18-21" />
+              <MenuItem value={4} primaryText="21-31" />
+              <MenuItem value={5} primaryText="31 и более" />
+            </SelectField>
+            <CardHeader title="Пол:"/>
+            <RadioButtonGroup name="sex" defaultSelected="1" valueSelected={sex} value={sex} onChange={::this.handleRadioChange} style={GroupStyle}>
+              <RadioButton value="1" label="Мужской"/>
+              <RadioButton value="2" label="Женский" />
             </RadioButtonGroup>
             <FormItem title="Клуб" type="text" name="club" handleInputChange={::this.handleInputChange} value={club} />
-            <FormItem title="Страна, город" type="text" name="country" handleInputChange={::this.handleInputChange} value={country} />
+            <FormItem title="Страна" type="text" name="nation" handleInputChange={::this.handleInputChange} value={nation} />
+            <FormItem title="Город" type="text" name="city" handleInputChange={::this.handleInputChange} value={city} />
             <FormItem title="Телефон" type="phone" name="phone" handleInputChange={::this.handleInputChange} value={phone} />
-            <div style={GroupStyle}>
-              <Checkbox label="Допущен" checked={allowed} name="allowed" onCheck={::this.handleCheckBoxChange} />
-              <Checkbox label="Оплатил" checked={paid} name="paid" onCheck={::this.handleCheckBoxChange} />
-            </div>
+            {/*<div style={GroupStyle}>
+              <Checkbox label="Допущен" checked={access} name="access" onCheck={::this.handleCheckBoxChange} />
+              <Checkbox label="Оплатил" checked={payment} name="payment" onCheck={::this.handleCheckBoxChange} />
+            </div>*/}
             <RaisedButton type="submit" label="Регистрация" primary={true} />
             { dialogNode }
           </form>

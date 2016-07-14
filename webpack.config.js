@@ -15,8 +15,16 @@ var config = {
     'react-redux',
     'react-router',
     'react-router-redux',
+    'react-tap-event-plugin',
     'redux',
-    'lodash'
+    'redux-devtools',
+    'redux-devtools-log-monitor',
+    'redux-devtools-dock-monitor',
+    'lodash',
+    'jquery',
+    'babel-polyfill',
+    'whatwg-fetch',
+    'material-ui'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -40,7 +48,7 @@ var config = {
 
       Util: path.resolve( __dirname, 'src', 'scripts', 'utils' ),
       Exp: path.resolve( __dirname, 'src', 'scripts', 'exp' ),
-      Apis: path.resolve( __dirname, 'src', 'scripts', 'apis' ),
+      Api: path.resolve( __dirname, 'src', 'scripts', 'api' ),
 
       Images: path.resolve( __dirname, 'src', 'images' ),
       Scripts: path.resolve( __dirname, 'src', 'scripts' ),

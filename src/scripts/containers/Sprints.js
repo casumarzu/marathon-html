@@ -15,10 +15,11 @@ class Sprints extends Component {
   }
 
   componentWillMount() {
-    this.props.sprintsActions.registerListeners()
+    this.props.sprintsActions.index()
   }
+
   render() {
-    const { sprints, participants } = this.props
+    const { sprints } = this.props
     if(!sprints.length){
       return(
         <div>
@@ -27,11 +28,14 @@ class Sprints extends Component {
       )
     }
     const { changeItem } = this.props.sprintsActions
+
     return (
-      <div className={styles.FlexWrapper}>
+      <div>
         <h1>Забеги</h1>
-        <SprintList list={ sprints } />
-        { this.props.children }
+        <div className={styles.FlexWrapper}>
+          <SprintList list={ sprints } />
+          { this.props.children }
+        </div>
       </div>
     )
   }
@@ -40,8 +44,7 @@ class Sprints extends Component {
 Sprints.propTypes = {
   sprints: PropTypes.array.isRequired,
   sprintsActions: PropTypes.shape({
-    changeItem: PropTypes.func.isRequired,
-    registerListeners: PropTypes.func.isRequired,
+    index: PropTypes.func.isRequired
   })
 }
 

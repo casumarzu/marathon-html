@@ -3,6 +3,7 @@ import SprintItem from './SprintItem'
 import _ from 'lodash'
 // import { TextField } from 'material-ui'
 import styles from 'Styles/Sprint.styl'
+import s from 'Styles/index.styl'
 
 export default class SprintList extends Component {
   static propTypes = {
@@ -17,23 +18,20 @@ export default class SprintList extends Component {
     const { list, type } = this.props
 
     const sprintListView = list.map((sprint) => {
-      const { id, title, info, schedule, organization, infrastructure, price, type } = sprint
+      const { id, name, organizational_issues, infrastructure, type } = sprint
       return (
         <SprintItem
           id={ id }
           key={ id }
-          title={ title }
-          info={ info }
-          schedule={ schedule }
-          organization={ organization }
+          name={ name }
+          organization={ organizational_issues }
           infrastructure={ infrastructure }
-          price={ price }
           type={ type } />
       )
     })
 
     return (
-      <div className={styles['sprint-list']} >
+      <div className={`${styles['sprint-list']} ${s.FlexItem}`} >
         { sprintListView }
       </div>
     )

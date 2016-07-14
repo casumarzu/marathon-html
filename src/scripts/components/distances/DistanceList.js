@@ -11,17 +11,16 @@ export default class DistanceList extends Component {
   }
 
   render() {
-    const { list, sprintId } = this.props
+    const { list } = this.props
     const distancesNode = list.map((distance) => {
-      const { id, duration, price, sprint } = distance
+      const { id, length, cost, race_id } = distance
       return (
         <DistanceItem
           id={ id }
           key={ id }
-          sprintId={ sprintId }
-          duration={ duration }
-          price={ price }
-          sprint={ sprint }
+          length={ length }
+          cost={ cost }
+          race_id={ race_id }
         />
       )
     })

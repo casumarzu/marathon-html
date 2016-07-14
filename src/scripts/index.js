@@ -1,4 +1,6 @@
 import 'babel-polyfill'
+import 'whatwg-fetch'
+require('react-tap-event-plugin')()
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
@@ -17,7 +19,7 @@ const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
 render(
-  <Provider store={store}>
+  <Provider store={store} >
     <Routes history={history}/>
   </Provider>
   , document.getElementById('root')

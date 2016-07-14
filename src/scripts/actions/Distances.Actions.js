@@ -1,6 +1,3 @@
-import _ from 'lodash'
-import { firebaseDb } from 'Apis/Google.Firebase'
-import { snapshotToList, recordFromSnapshot } from './Helpers'
 import {
   SHOW_DISTANCE_SUCCESS,
   SHOW_DISTANCE_ERROR,
@@ -10,33 +7,35 @@ import {
   CREATE_DISTANCE_ERROR,
 } from 'Constants/Distances.Constants'
 
+import { Distances } from 'Api/Marathon'
+const distances = new Distances()
 
-export const showItem = window.showItem = function showItem(id) {
+export function index(race_id) {
   return (dispatch) => {
-    let distanceItem = _.find(distancesList, { id })
-    dispatch({
-      type: SHOW_DISTANCE_SUCCESS,
-      payload: distanceItem
-    })
+    distances.index(race_id).then(
+      json => dispatch({
+        type: SHOW_DISTANCES_SUCCESS,
+        payload: json
+      }),
+      err => dispatch({
+        type: SHOW_DISTANCES_ERROR,
+        payload: err
+      })
+    )
   }
 }
 
-let distancesList = []
-
-export function registerListeners() {
-  return (dispatch, getState) => {
-    const ref = firebaseDb.ref('distances')
-    ref.on('value', snapshot => {
-      distancesList = snapshotToList(snapshot)
-      dispatch({
-        type: SHOW_DISTANCES_SUCCESS,
-        payload: distancesList
+export function show(race_id, distance_id) {
+  return (dispatch) => {
+    distances.show(race_id, distance_id).then(
+      json => dispatch({
+        type: SHOW_DISTANCE_SUCCESS,
+        payload: json
+      }),
+      err => dispatch({
+        type: SHOW_DISTANCE_ERROR,
+        payload: err
       })
-    })
-
-    ref.on('child_changed', snapshot => dispatch({
-      type: UPDATE_DISTANCE_SUCCESS,
-      payload: recordFromSnapshot(snapshot)
-    }))
+    )
   }
 }

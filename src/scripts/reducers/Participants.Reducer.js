@@ -12,18 +12,22 @@ import {
 } from 'Constants/Participants.Constants'
 
 let initialState = {
-  deleted: null,
   list: [],
-  previous: []
+  item: {},
+  error: {}
 }
 
 export default function participantsList(state = initialState, action) {
   switch (action.type) {
     case SHOW_PARTICIPANTS_SUCCESS:
       return { ...state, list: action.payload }
+
+    case SHOW_PARTICIPANT_SUCCESS:
+      return { ...state, item: action.payload }
+
     case CREATE_PARTICIPANT_SUCCESS:
-      return { ...state, message: 'CREATE_PARTICIPANT_SUCCESS!!!'}
-      // return { ...state, list: action.payload }
+      return { ...state, list: action.payload}
+
     default:
       return state;
   }
