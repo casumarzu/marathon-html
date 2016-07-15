@@ -35,7 +35,7 @@ export default class App extends Component {
 
   render() {
     let DevToolsNode = ''
-    if(module.hot) {
+    if(process.env.NODE_ENV === 'development') {
       DevToolsNode = <DevTools />
     }
     return (

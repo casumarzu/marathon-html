@@ -1,18 +1,16 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from '../reducers'
-import createLogger from 'redux-logger'
 import thunk from 'redux-thunk'
 import { persistState } from 'redux-devtools'
-
 import DevTools from 'Containers/DevTools'
 
-const logger = createLogger()
 let enhancer
 
-if(module.hot){
+if(process.env.NODE_ENV === 'development'){
   enhancer = compose(
-    applyMiddleware(thunk, logger),
+    applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
+    // DevTools.instrument(),
     persistState(
       window.location.href.match(
         /[?&]debug_session=([^&#]+)\b/
