@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import { Card, CardHeader, CardTitle, CardText, Divider, CircularProgress } from 'material-ui'
 import _ from 'lodash'
+import * as colors from 'material-ui/styles/colors'
 
 import styles from 'Styles/Sprint.styl'
 
@@ -12,11 +13,10 @@ export default class SprintItem extends Component {
   }
 
   render() {
-    const { id, name, organization, infrastructure, type } = this.props
-    const sprintType = `__${type}`
+    const { id, name, organization, infrastructure, status } = this.props
+    const sprintType = `__${status}`
     let supText
-
-    switch(type) {
+    switch(status) {
       case 'past':
         supText = 'Прошедший'
         break;
@@ -30,8 +30,26 @@ export default class SprintItem extends Component {
         supText = 'Настоящий'
     }
 
+    let background
+
+    switch(status) {
+      case 'past':
+        background = colors.blue300
+        break;
+      case 'background':
+        background = colors.green300
+        break;
+      case 'future':
+        background = colors.red300
+        break;
+      default:
+        background = colors.blue300
+    }
+
     return (
-      <div className={`${styles['sprint-list__item']} ${styles[sprintType]}`}>
+      <div className={`${styles['sprint-list__item']}`} style={{
+          background: background
+        }}>
         <Link to={`/sprint/${id}`}>
           <Card>
             <CardHeader title={`Забег: ${name}`} subtitle={supText}/>
