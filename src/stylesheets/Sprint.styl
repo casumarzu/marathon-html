@@ -7,22 +7,23 @@
   max-width 1200px
   display flex
   flex-flow row wrap
+  align-content center
 
   &__item
     color = #812e2e
     color #fff
-    margin 1em
-    transition all .5s ease-in
     cursor pointer
     border-radius 3px
-    padding 1em
     display block
-    flex-grow: 1
+    box-sizing border-box
+    padding 10px
+    margin 2%
+    width 29%
+    @media all and (max-width: 900px)
+      margin 5%
+      width 40%
+    @media all and (max-width: 700px)
+      margin 5%
+      width 90%
     a
       color #fff
-    &.__past
-      background #4343da
-    &.__present
-      background #106d10
-    &.__future
-      background #812e2e
