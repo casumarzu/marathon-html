@@ -21,9 +21,14 @@ if(NODE_ENV === 'development'){
     new ExtractTextPlugin(),
     new CommonsChunkPlugin('vendors', 'vendors.[hash].js'),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.ProgressPlugin(function(percentage, msg) {
-      var percentage = (percentage * 100) + '%';
-      console.log(percentage.cyan, msg.green);
+    // new webpack.ProgressPlugin(function(percentage, msg) {
+    //   var percentage = (percentage * 100) + '%';
+    //   console.log(percentage.cyan, msg.green);
+    // }),
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': JSON.stringify('development')
+      }
     }),
     new webpack.NoErrorsPlugin()
   ];

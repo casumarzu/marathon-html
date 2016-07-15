@@ -7,15 +7,23 @@ new WebpackDevServer(webpack(config), {
   contentBase: './src',
   hot: true,
   historyApiFallback: true,
+  quiet: false,
+  stats: { colors: true },
   proxy: {
     '/api/*': {
-      target: 'http://0.0.0.0:3000/api/',
+      target: {
+        host: 'run.skbx.ru',
+        protocol: 'http:',
+        path: '/api/',
+        port: 80
+      },
       rewrite: function(req) {
         req.url = req.url.replace(/^\/api/, '');
-      }
+      },
+      changeOrigin: true,
+      secure: false
     }
-  },
-  stats: { colors: true }
+  }
 }).listen(port, 'localhost', function (err, result) {
   if (err) {
     console.log(err);
