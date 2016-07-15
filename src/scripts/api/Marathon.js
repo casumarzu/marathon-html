@@ -5,7 +5,6 @@ function onDone (json) {
   return json
 }
 function onFail (err) {
-  debugger
   return err
 }
 
